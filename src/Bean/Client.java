@@ -17,7 +17,7 @@ public class Client extends Utilisateur {
 	}
 
 	public Client(String nom, String prenom, Date dateNaissance, String telephone, String email, String password,
-			String nomImage) {
+			String nomImage, Panier panier) {
 		super(nom, prenom, dateNaissance, telephone, email, password, nomImage);
 		this.panier = panier;
 	}
