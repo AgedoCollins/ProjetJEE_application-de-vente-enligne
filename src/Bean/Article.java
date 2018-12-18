@@ -55,6 +55,7 @@ public class Article implements Serializable{
 	public void creerArticle() {
 
 	}
+	
 
 	public void modifierArticle() {
 
