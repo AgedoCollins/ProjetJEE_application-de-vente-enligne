@@ -1,8 +1,10 @@
 package Bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Commande {
+public class Commande implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Date dateCommande;
 	private String etat;
 	private double total;

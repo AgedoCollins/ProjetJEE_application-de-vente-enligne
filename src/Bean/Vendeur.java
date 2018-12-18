@@ -1,9 +1,10 @@
 package Bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Vendeur extends Utilisateur {
-
+public class Vendeur extends Utilisateur implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Article article;
 
 	public Vendeur() {

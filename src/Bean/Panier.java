@@ -1,8 +1,10 @@
 package Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Panier {
+public class Panier implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private List<Article> listArticles;
 	private Commande commande;
 	

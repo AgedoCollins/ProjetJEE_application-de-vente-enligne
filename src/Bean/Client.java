@@ -1,9 +1,10 @@
 package Bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Client extends Utilisateur {
-
+public class Client extends Utilisateur implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Panier panier;
 
 	public Client() {

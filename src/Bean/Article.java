@@ -1,6 +1,9 @@
 package Bean;
 
-public class Article {
+import java.io.Serializable;
+
+public class Article implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String libelle;
 	private double prix;
 	private String descriptif;
