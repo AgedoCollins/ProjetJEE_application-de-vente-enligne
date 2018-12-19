@@ -2,33 +2,33 @@ package Bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Vendeur extends Utilisateur implements Serializable{
+public class Vendeur extends Utilisateur implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private Article article;
+	private List<Article> listArticles;
 
 	public Vendeur() {
 
 	}
 
 	public Vendeur(int id, String nom, String prenom, Date dateNaissance, String telephone, String email,
-			String password, String nomImage, Article article) {
+			String password, String nomImage, List<Article> listArticles) {
 		super(id, nom, prenom, dateNaissance, telephone, email, password, nomImage);
-		this.article = article;
+		this.listArticles = listArticles;
 	}
 
 	public Vendeur(String nom, String prenom, Date dateNaissance, String telephone, String email, String password,
-			String nomImage, Article article) {
+			String nomImage, Article article, List<Article> listArticles) {
 		super(nom, prenom, dateNaissance, telephone, email, password, nomImage);
-		this.article = article;
+		this.listArticles = listArticles;
 	}
 
-	public Article getArticle() {
-		return article;
+	public List<Article> getListArticles() {
+		return listArticles;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setListArticles(List<Article> listArticles) {
+		this.listArticles = listArticles;
 	}
-
 }
