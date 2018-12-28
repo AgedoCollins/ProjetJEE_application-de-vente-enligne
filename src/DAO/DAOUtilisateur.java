@@ -4,7 +4,7 @@ import com.sun.jersey.api.client.WebResource;
 
 import Bean.Utilisateur;
 
-public class DAOUtilisateur extends Idao<Utilisateur>{
+public class DAOUtilisateur extends DAO<Utilisateur>{
 
 	public DAOUtilisateur(WebResource conn) {
 		super(conn);

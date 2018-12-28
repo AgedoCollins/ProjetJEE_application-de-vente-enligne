@@ -1,8 +1,12 @@
 package Modele;
 
+import java.io.IOException;
 import java.util.Date;
 
 import javax.xml.bind.JAXBException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import Bean.Client;
 import Bean.Vendeur;
@@ -13,7 +17,7 @@ public class ModeleVendeur {
 	private  AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	private  DAOVendeur daoVendeur = abstractDAOFactory.getDAOVendeur();
 	
-	public Vendeur findLogin(String email, String password) throws JAXBException {
+	public Vendeur findLogin(String email, String password) throws JAXBException, JsonParseException, JsonMappingException, IOException {
 		return daoVendeur.findLogin(email, password);
 	}
 	

@@ -1,4 +1,4 @@
-package ServiceWeb;
+package DAO;
 
 import java.net.URI;
 

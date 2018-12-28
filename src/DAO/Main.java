@@ -3,7 +3,7 @@ package DAO;
 import com.sun.jersey.api.client.WebResource;
 
 import Bean.Client;
-import ServiceWeb.Link_WebService;
+
 
 public class Main {
 

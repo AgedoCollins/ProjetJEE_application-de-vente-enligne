@@ -4,7 +4,7 @@ import com.sun.jersey.api.client.WebResource;
 
 import Bean.Article;
 
-public class DAOArticle extends Idao<Article>{
+public class DAOArticle extends DAO<Article>{
 
 	public DAOArticle(WebResource conn) {
 		super(conn);

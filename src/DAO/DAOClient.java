@@ -2,9 +2,13 @@ package DAO;
 
 import javax.ws.rs.core.MediaType;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.representation.Form;
 
+import java.io.IOException;
 import java.io.StringReader;
 
 import javax.xml.bind.JAXBContext;
@@ -12,9 +16,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import Bean.Client;
-import DAO.Idao;
+import DAO.DAO;
 
-public class DAOClient extends Idao<Client>{
+public class DAOClient extends DAO<Client>{
 
 	public DAOClient(WebResource conn) {
 		super(conn);
@@ -31,8 +35,9 @@ public class DAOClient extends Idao<Client>{
 		f.add("email", client.getEmail());
 		f.add("password", client.getPassword());
 		
-		System.out.println("CONNECTION : " + connect.path("utilisateurs").accept(MediaType.TEXT_PLAIN).post(String.class, f));
-		return "a";
+		System.out.println("CONNECTION : " + connect);
+		
+		return connect.path("clients").accept(MediaType.TEXT_PLAIN).post(String.class, f);
 	}
 
 	@Override
@@ -42,21 +47,26 @@ public class DAOClient extends Idao<Client>{
 	}
 
 	/**
-	 * @throws JAXBException ******************************************************/
-	public Client findLogin(String email, String password) throws JAXBException {
+	 * @throws JAXBException 
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException ******************************************************/
+	public Client findLogin(String email, String password) throws JAXBException, JsonParseException, JsonMappingException, IOException {
 		Client client = null;
 		
-		String xmlAnswer = connect.
-				path("utilisateurs").queryParam("email", email)
+		String jsonAnswer = connect.
+				path("clients").queryParam("email", email)
 				.queryParam("password", password)
-				.accept(MediaType.APPLICATION_XML)
+				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		
-		if(!xmlAnswer.equals("")) {
-			JAXBContext jaxbContext = JAXBContext.newInstance(Client.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			StringReader reader = new StringReader(xmlAnswer);
-			client = (Client) unmarshaller.unmarshal(reader);
+		if(!jsonAnswer.equals("")) {
+			ObjectMapper mapper = new ObjectMapper();
+			client = mapper.readValue(jsonAnswer, Client.class);
+		}
+		else
+		{
+			client = null;
 		}
 		 
 			return client;

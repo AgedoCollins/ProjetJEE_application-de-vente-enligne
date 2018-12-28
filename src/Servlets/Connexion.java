@@ -65,7 +65,7 @@ public class Connexion extends HttpServlet {
 						msg = "Login et/ou mot de passe incorrect.";
 					else {
 						session.setAttribute("vendeur", vendeur);
-						this.getServletContext().getRequestDispatcher("/vues/Dashbaord_Vendeur.jsp").forward(request,
+						this.getServletContext().getRequestDispatcher("/vues/Dashboard_Vendeur.jsp").forward(request,
 								response);
 					}
 				} else {

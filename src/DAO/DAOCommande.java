@@ -4,7 +4,7 @@ import com.sun.jersey.api.client.WebResource;
 
 import Bean.Commande;
 
-public class DAOCommande extends Idao<Commande>{
+public class DAOCommande extends DAO<Commande>{
 
 	public DAOCommande(WebResource conn) {
 		super(conn);

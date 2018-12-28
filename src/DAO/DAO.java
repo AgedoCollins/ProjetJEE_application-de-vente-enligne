@@ -3,10 +3,10 @@ package DAO;
 
 import com.sun.jersey.api.client.WebResource;
 
-public abstract class Idao<T> {
+public abstract class DAO<T> {
 	  protected WebResource connect = null;
 	   
-	  public Idao(WebResource conn){
+	  public DAO(WebResource conn){
 		  this.connect = conn;
 	  }
 	

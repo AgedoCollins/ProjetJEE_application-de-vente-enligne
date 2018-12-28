@@ -82,12 +82,17 @@ public class Inscription extends HttpServlet {
 		if (utilisateur.compareTo("client") == 0) {
 			ModeleClient modele_Client = new ModeleClient();
 			msg = modele_Client.create(nom, prenom, dateNaissance, telephone, email, password);
+			this.getServletContext().getRequestDispatcher("/vues/Dashboard_Client.jsp").forward(request,
+					response);
 		} else {
 			ModeleVendeur modele_Vendeur = new ModeleVendeur();
 			msg = modele_Vendeur.create(nom, prenom, dateNaissance, telephone, email, password);
+			this.getServletContext().getRequestDispatcher("/vues/Dashboard_Vendeur.jsp").forward(request,
+					response);
 		}
 			
-			switch (msg) {
+		
+			/*switch (msg) {
 
 			case "1": // inscription reussie
 				request.setAttribute("nouveauUtilisateur", "compte crée...");
@@ -108,7 +113,7 @@ public class Inscription extends HttpServlet {
 				request.setAttribute("msg", msg);
 				this.getServletContext().getRequestDispatcher("/vues/Inscription.jsp").forward(request,
 						response);
-			}
+			}*/
 
 		} else {
 			request.setAttribute("msg", "Veuillez sélectionner un type d'utilisateur");

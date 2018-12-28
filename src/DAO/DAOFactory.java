@@ -2,8 +2,6 @@ package DAO;
 
 import com.sun.jersey.api.client.WebResource;
 
-import ServiceWeb.Link_WebService;
-
 public class DAOFactory extends AbstractDAOFactory {
 	protected static final WebResource connect = Link_WebService.getService();
 
