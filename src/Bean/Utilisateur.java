@@ -11,7 +11,7 @@ public class Utilisateur implements Iauthentifier, Serializable {
 	private int id;
 	private String nom;
 	private String prenom;
-	private Date dateNaissance;
+	private String dateNaissance;
 	private String telephone;
 	private String email;
 	private String password;
@@ -21,7 +21,7 @@ public class Utilisateur implements Iauthentifier, Serializable {
 
 	}
 
-	public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String telephone, String email,
+	public Utilisateur(int id, String nom, String prenom, String dateNaissance, String telephone, String email,
 			String password, String nomImage) {
 		this.id = id;
 		this.nom = nom;
@@ -32,7 +32,7 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		this.password = password;
 	}
 
-	public Utilisateur(String nom, String prenom, Date dateNaissance, String telephone, String email, String password,
+	public Utilisateur(String nom, String prenom, String dateNaissance, String telephone, String email, String password,
 			String nomImage) {
 		this.nom = nom;
 		this.prenom = prenom;
@@ -41,6 +41,16 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		this.email = email;
 		this.password = password;
 	}
+	
+	public Utilisateur(String nom, String prenom, String dateNaissance, String telephone, String email, String password) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.telephone = telephone;
+		this.email = email;
+		this.password = password;
+	}
+
 
 	public int getId() {
 		return id;
@@ -66,11 +76,11 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		this.prenom = prenom;
 	}
 
-	public Date getDateNaissance() {
+	public String getDateNaissance() {
 		return dateNaissance;
 	}
 
-	public void setDateNaissance(Date dateNaissance) {
+	public void setDateNaissance(String dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
 
@@ -123,5 +133,11 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance
 				+ ", telephone=" + telephone + ", email=" + email + ", password=" + password + ", nomImage=" + nomImage
 				+ "]";
+	}
+
+	@Override
+	public void connexion() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -12,13 +12,13 @@ public class Vendeur extends Utilisateur implements Serializable {
 
 	}
 
-	public Vendeur(int id, String nom, String prenom, Date dateNaissance, String telephone, String email,
+	public Vendeur(int id, String nom, String prenom, String dateNaissance, String telephone, String email,
 			String password, String nomImage, List<Article> listArticles) {
 		super(id, nom, prenom, dateNaissance, telephone, email, password, nomImage);
 		this.listArticles = listArticles;
 	}
 
-	public Vendeur(String nom, String prenom, Date dateNaissance, String telephone, String email, String password,
+	public Vendeur(String nom, String prenom, String dateNaissance, String telephone, String email, String password,
 			String nomImage, Article article, List<Article> listArticles) {
 		super(nom, prenom, dateNaissance, telephone, email, password, nomImage);
 		this.listArticles = listArticles;

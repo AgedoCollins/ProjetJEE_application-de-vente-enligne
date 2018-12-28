@@ -11,18 +11,23 @@ public class Client extends Utilisateur implements Serializable{
 
 	}
 
-	public Client(int id, String nom, String prenom, Date dateNaissance, String telephone, String email,
+	public Client(int id, String nom, String prenom, String dateNaissance, String telephone, String email,
 			String password, String nomImage, Panier panier) {
 		super(id, nom, prenom, dateNaissance, telephone, email, password, nomImage);
 		this.panier = panier;
 	}
 
-	public Client(String nom, String prenom, Date dateNaissance, String telephone, String email, String password,
+	public Client(String nom, String prenom, String dateNaissance, String telephone, String email, String password,
 			String nomImage, Panier panier) {
 		super(nom, prenom, dateNaissance, telephone, email, password, nomImage);
 		this.panier = panier;
 	}
 
+	public Client(String nom, String prenom, String dateNaissance, String telephone, String email, String password) {
+		super(nom, prenom, dateNaissance, telephone, email, password);
+		
+	}
+	
 	public Panier getPanier() {
 		return panier;
 	}
