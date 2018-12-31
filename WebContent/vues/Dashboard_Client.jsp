@@ -5,8 +5,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
 </head>
 <body>
-	<h1>Bienvenue client</h1>
+	<h1>Bienvenue <jsp:getProperty name="client" property="prenom"/> <jsp:getProperty name="client" property="nom"/></h1>
+	
+	 <ul class="nav navbar-nav">
+    <li><a href="logout">Déconnexion</a></li>
+	</ul>
 </body>
 </html>

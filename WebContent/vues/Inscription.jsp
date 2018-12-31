@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Inscription</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
 </head>
 <body>
 <div class="container">

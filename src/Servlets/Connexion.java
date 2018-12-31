@@ -62,7 +62,9 @@ public class Connexion extends HttpServlet {
 					Vendeur vendeur = null;
 					vendeur = modeleVendeur.findLogin(email, password);
 					if (vendeur == null)
+					{
 						msg = "Login et/ou mot de passe incorrect.";
+					}
 					else {
 						session.setAttribute("vendeur", vendeur);
 						this.getServletContext().getRequestDispatcher("/vues/Dashboard_Vendeur.jsp").forward(request,
