@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import Modele.ModeleClient;
@@ -55,6 +56,15 @@ public class Inscription extends HttpServlet {
 		String utilisateur = (String) request.getParameter("utilisateur");
 		String msg = "";
 		
+		HttpSession session = request.getSession();
+		session.setAttribute("nom", nom);
+		session.setAttribute("prenom", prenom);
+		session.setAttribute("dateNaissance", dateNaissance);
+		session.setAttribute("telephone", telephone);
+		session.setAttribute("email", email);
+		session.setAttribute("password", password);
+		session.setAttribute("confirmerPassword", confirmerPassword);
+		
 		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
@@ -82,12 +92,12 @@ public class Inscription extends HttpServlet {
 		if (utilisateur.compareTo("client") == 0) {
 			ModeleClient modele_Client = new ModeleClient();
 			msg = modele_Client.create(nom, prenom, dateNaissance, telephone, email, password);
-			this.getServletContext().getRequestDispatcher("/vues/Dashboard_Client.jsp").forward(request,
+			this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request,
 					response);
 		} else {
 			ModeleVendeur modele_Vendeur = new ModeleVendeur();
 			msg = modele_Vendeur.create(nom, prenom, dateNaissance, telephone, email, password);
-			this.getServletContext().getRequestDispatcher("/vues/Dashboard_Vendeur.jsp").forward(request,
+			this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request,
 					response);
 		}
 			

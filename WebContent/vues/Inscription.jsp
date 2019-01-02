@@ -23,31 +23,31 @@
          	</tr>
          	<tr>
 	        	<td> <label for="nom">Nom (*)</label></td>
-	         	<td><input id="nom" name="nom" type="text" /></td>
+	         	<td><input id="nom" name="nom" type="text" value="${empty nom ? '' : nom }"/></td>
 	         </tr>
 	         <tr>
 	        	 <td><label for="prenom">Prénom (*)</label></td>
-	         	<td><input id="prenom" name="prenom" type="text" /></td>
+	         	<td><input id="prenom" name="prenom" type="text" value="${empty prenom ? '' : prenom }"/></td>
 	         </tr>
 	         <tr>
 	        	 <td><label for="dateNaissance">Date de naissance (*)</label></td>
-	         	<td><input id="dateNaissance" name="dateNaissance" type="text" /></td>
+	         	<td><input id="dateNaissance" name="dateNaissance" type="text" value="${empty dateNaissance ? '' : dateNaissance }"/></td>
 	         </tr>
 	         <tr>
 	         	<td><label for="telephone">Téléphone (*)</label></td>
-	         	<td><input id="telephone" name="telephone" type="text"/></td>
+	         	<td><input id="telephone" name="telephone" type="text" value="${empty telephone ? '' : telephone }"/></td>
 	         </tr>
 	         <tr>
 	         	<td><label for="email">Email (*)</label></td>
-	         	<td><input id="email" name="email" type="text"/></td>
+	         	<td><input id="email" name="email" type="text" value="${empty email ? '' : email }"/></td>
 	         </tr>
 	          <tr>
 	         	<td><label for="password">Mot de passe (*)</label></td>
-	         	<td><input id="password" name="password" type="password"/></td>
+	         	<td><input id="password" name="password" type="password"value="${empty motdepasse ? '' : motdepasse }"/></td>
 	         </tr>
 	          <tr>
 	         	<td><label for="password">Confirmer mot de passe (*)</label></td>
-	         	<td><input id="confirmerPassword" name="confirmerPassword" type="password"/></td>
+	         	<td><input id="confirmerPassword" name="confirmerPassword" type="password" value="${empty confirmerMotdepasse ? '' : confirmerMotdepasse }"/></td>
 	         </tr>
          </table>
          

@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Vos articles</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css"/>
 </head>
 <body>
 	<div id="divParent" class="container">
@@ -29,7 +29,6 @@
 		<c:forEach items="${listArticles}" var="article">
 			<c:set var="index" value="${index + 1}" />
 			<tr>
-					<td>${article.id}</td>
 					<td>${article.libelle}</td>
 					<td>${article.prix}</td>
 					<td>${article.descriptif}</td>

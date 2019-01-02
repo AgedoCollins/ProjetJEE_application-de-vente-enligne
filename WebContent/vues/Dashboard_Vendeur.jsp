@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css"/>
 </head>
 <body>
 	<h1>Bienvenue <jsp:getProperty name="vendeur" property="prenom"/> <jsp:getProperty name="vendeur" property="nom"/> </h1>

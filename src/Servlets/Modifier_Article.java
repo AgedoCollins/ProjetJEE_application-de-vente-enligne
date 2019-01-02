@@ -1,6 +1,8 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Bean.Article;
 import Bean.Vendeur;
 
 /**
@@ -31,7 +34,15 @@ public class Modifier_Article extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("id", request.getParameter("id"));
+		HttpSession session = request.getSession();
+		@SuppressWarnings("unchecked")
+		List<Article> listArticle = (List<Article>)session.getAttribute("listArticles");
+		int index =Integer.parseInt((String) request.getParameter("index"));
+		Article article = listArticle.get(index);
+		session.setAttribute("id", article.getId());
+		session.setAttribute("libelle", article.getLibelle());
+		session.setAttribute("prix", article.getPrix());
+		session.setAttribute("descriptif", article.getDescriptif());
 		this.getServletContext().getRequestDispatcher("/vues/Modifier_Article.jsp").forward(request, response);
 	}
 

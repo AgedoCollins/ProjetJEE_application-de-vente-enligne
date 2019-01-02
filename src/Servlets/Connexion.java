@@ -48,7 +48,10 @@ public class Connexion extends HttpServlet {
 		String password = (String) request.getParameter("password");
 		String msg = "";
 		HttpSession session = request.getSession();
-
+		
+		session.setAttribute("email", email);
+		session.setAttribute("password", password);
+	
 		if (email.equals("") || password.equals("")) {
 			msg = "Veuillez entrer tous les champs.";
 		} else {

@@ -43,7 +43,7 @@ public class Modifier_Article2 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		try {
-			int id = Integer.parseInt(request.getParameter("id"));
+			int id = (int) session.getAttribute("id");
 			String libelle=(String) request.getParameter("libelle");
 			double prix=Double.parseDouble(request.getParameter("prix"));
 			String descriptif=(String) request.getParameter("descriptif");

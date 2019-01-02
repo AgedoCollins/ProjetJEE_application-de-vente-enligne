@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajouter un article</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css"/>
 </head>
 <body>
 	<div class="container">
