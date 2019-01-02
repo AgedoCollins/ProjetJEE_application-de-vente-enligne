@@ -21,6 +21,10 @@ public class ModeleArticle {
 		return daoArticle.findAll();
 	}
 	
+	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException, JSONException {
+		return daoArticle.findArticle(id);
+	}
+	
 	public List<Article> findArticlesByVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException {
 		return daoArticle.findArticlesByVendeur(vendeur);
 	}
@@ -34,6 +38,7 @@ public class ModeleArticle {
 			article.setLibelle(libelle);
 			article.setPrix(prix);
 			article.setDescriptif(descriptif);
+			article.setNomImage(nomImage);
 			return daoArticle.create(article, vendeur);
 		}
 	}

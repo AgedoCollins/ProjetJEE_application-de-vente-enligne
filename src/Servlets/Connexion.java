@@ -1,6 +1,9 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBException;
 
+import org.json.JSONException;
+
+import Bean.Article;
 import Bean.Client;
 import Bean.Vendeur;
+import Modele.ModeleArticle;
 import Modele.ModeleClient;
 import Modele.ModeleVendeur;
 
@@ -74,11 +81,21 @@ public class Connexion extends HttpServlet {
 								response);
 					}
 				} else {
+					ServletContext servletContext = this.getServletConfig().getServletContext();
+				    String filePath = getServletContext().getInitParameter("path_image");
 					session.setAttribute("client", client);
+					ModeleArticle modArticle = new ModeleArticle();
+					List<Article> listeArticles = modArticle.findAll();
+					session.setAttribute("path_image", filePath);
+					session.setAttribute("listeArticles", listeArticles);
+					request.setAttribute("listeArticles", listeArticles);
 					this.getServletContext().getRequestDispatcher("/vues/Dashboard_Client.jsp").forward(request,
 							response);
 				}
 			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

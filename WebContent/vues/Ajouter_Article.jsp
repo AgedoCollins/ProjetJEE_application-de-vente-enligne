@@ -14,7 +14,7 @@
 		<p  style="color : red">
 			${empty msg ? '' : msg }
 		</p>
-	<form action=ajoutCorrect method="post">
+	<form action=ajoutCorrect  enctype="multipart/form-data" method="post">
 		<table>
 			<tr>
 				<td><label for="libelle">Libelle</label></td>
@@ -29,6 +29,10 @@
 			<tr>
 				<td><label for="descriptif">Descriptif</label></td>
 				<td><input type="text" name="descriptif"/></td>
+			</tr>
+			<tr>
+				<td><label for="image">Image (*)</label></td>
+				<td><input type="file" name="image" accept="image/*"/></td>
 			</tr>
 		</table>
 		<input type="submit" value="Ajouter"/>

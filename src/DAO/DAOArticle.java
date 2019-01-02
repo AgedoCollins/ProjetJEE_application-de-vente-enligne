@@ -41,7 +41,7 @@ public class DAOArticle extends DAO<Article>{
 		f.add("libelle",article.getLibelle());
 		f.add("prix", article.getPrix());
 		f.add("descriptif", article.getDescriptif());
-		f.add("nomImage", article.getNomImage());
+		f.add("nomimage", article.getNomImage());
 		f.add("id_utilisateur", vendeur.getId());
 		return connect.path("articles").accept(MediaType.TEXT_PLAIN).post(String.class, f);
 	}
@@ -83,6 +83,24 @@ public class DAOArticle extends DAO<Article>{
 		}
 		
 		return listArticles;
+	}
+	
+	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException 
+	{
+			// TODO Auto-generated method stub
+			Article arti = null;
+
+			String jsonAnswer = connect
+					.path("articles/afficher")
+					.path(id)
+					.accept(MediaType.APPLICATION_JSON)
+					.get(String.class);
+
+			if(!jsonAnswer.equals("")) {
+				ObjectMapper mapper = new ObjectMapper();
+				arti = mapper.readValue(jsonAnswer, Article.class);
+			}
+			return arti;
 	}
 	
 	public List<Article> findArticlesByVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException{

@@ -18,5 +18,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="E:/Condorcet3IN01A 2018-2019/Quadri 1/Applications Informatiques/Projet/Programme/Projet_JEE/ojdbc8.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Projet_REST"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
