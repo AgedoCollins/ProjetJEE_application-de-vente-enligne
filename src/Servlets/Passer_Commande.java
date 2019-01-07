@@ -1,0 +1,95 @@
+package Servlets;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.sql.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.JSONException;
+
+import Bean.Article;
+import Bean.Client;
+import Bean.Commande;
+import Bean.Panier;
+import Bean.Vendeur;
+import Modele.ModeleArticle;
+import Modele.ModeleCommande;
+
+/**
+ * Servlet implementation class Passer_Commande
+ */
+@WebServlet("/Passer_Commande")
+public class Passer_Commande extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Passer_Commande() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Panier panier = (Panier) session.getAttribute("panier");
+		Client client = (Client)session.getAttribute("client");
+		ModeleCommande modeleCommande = new ModeleCommande();
+		String msg = new String();
+		
+		/*java.util.Date date = new java.util.Date();
+		Date laDate = new Date(date.getTime());
+		String laDateString = laDate.toString();
+		String laDateStringCorrige = "\"" + laDateString + "\"";*/
+		String matrice = "dd/MM/yyyy";
+		Instant laDate = Instant.now();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern(matrice);
+		ZoneId fuseau = ZoneId.systemDefault();
+		ZonedDateTime dateSurFuseau = laDate.atZone(fuseau);
+		String date = format.format(dateSurFuseau);
+		msg = modeleCommande.create(date, "NON TRAITEE", client);
+		
+		Commande commande = new Commande();
+		
+		try {
+			int lastId = modeleCommande.findLastId();
+			for(Article article : panier.getListArticles())
+			{
+				commande.setId(lastId);
+				modeleCommande.createLigneCommande(commande, article);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(panier.getListArticles().size()!=0)
+		{
+			panier.getListArticles().clear();
+		}
+		request.setAttribute("msg", "La commande a bien été passée.");
+		this.getServletContext().getRequestDispatcher("/vues/Gestion_Catalogue.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
