@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -16,6 +17,7 @@ import org.json.JSONException;
 
 import Bean.Article;
 import Bean.Client;
+import Bean.Panier;
 import Bean.Vendeur;
 import Modele.ModeleArticle;
 import Modele.ModeleClient;
@@ -81,6 +83,8 @@ public class Connexion extends HttpServlet {
 								response);
 					}
 				} else {
+					Panier panier = new Panier();
+					panier.setListArticles(new ArrayList<Article>());
 					ServletContext servletContext = this.getServletConfig().getServletContext();
 				    String filePath = getServletContext().getInitParameter("path_image");
 					session.setAttribute("client", client);
@@ -88,6 +92,7 @@ public class Connexion extends HttpServlet {
 					List<Article> listeArticles = modArticle.findAll();
 					session.setAttribute("path_image", filePath);
 					session.setAttribute("listeArticles", listeArticles);
+					session.setAttribute("panier", panier);
 					request.setAttribute("listeArticles", listeArticles);
 					this.getServletContext().getRequestDispatcher("/vues/Dashboard_Client.jsp").forward(request,
 							response);

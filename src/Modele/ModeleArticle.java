@@ -3,6 +3,8 @@ package Modele;
 import java.io.IOException;
 import java.util.List;
 
+import javax.xml.bind.JAXBException;
+
 import org.json.JSONException;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -21,14 +23,13 @@ public class ModeleArticle {
 		return daoArticle.findAll();
 	}
 	
-	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException, JSONException {
+	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException, JSONException, JAXBException {
 		return daoArticle.findArticle(id);
 	}
 	
 	public List<Article> findArticlesByVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException {
 		return daoArticle.findArticlesByVendeur(vendeur);
 	}
-
 	
 	public String create(String libelle, double prix, String descriptif, String nomImage,Vendeur vendeur) {
 		if (libelle.equals(""))

@@ -17,17 +17,17 @@
 	<form action=ajoutCorrect  enctype="multipart/form-data" method="post">
 		<table>
 			<tr>
-				<td><label for="libelle">Libelle</label></td>
+				<td><label for="libelle">Libelle (*)</label></td>
 				<td><input type="text" name="libelle"/></td>
 			</tr>
 			
 			<tr>
-				<td><label for="prix">Prix</label></td>
+				<td><label for="prix">Prix (*)</label></td>
 				<td><input type="text" name="prix"/></td>
 			</tr>
 			
 			<tr>
-				<td><label for="descriptif">Descriptif</label></td>
+				<td><label for="descriptif">Descriptif (*)</label></td>
 				<td><input type="text" name="descriptif"/></td>
 			</tr>
 			<tr>
@@ -35,7 +35,7 @@
 				<td><input type="file" name="image" accept="image/*"/></td>
 			</tr>
 		</table>
-		<input type="submit" value="Ajouter"/>
+		<input type="submit" class="btn btn-info" value="Ajouter"/>
 	</form>
 	</div>
 </body>

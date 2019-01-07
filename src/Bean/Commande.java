@@ -3,25 +3,46 @@ package Bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Commande implements Serializable{
+public class Commande implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private Date dateCommande;
+	private int id;
+	private String dateCommande;
 	private String etat;
-	private double total;
+	//private double total;
 	private Date dateLivraison;
 
-	public Commande(Date dateCommande, String etat, double total, Date dateLivraison) {
-		this.dateCommande = dateCommande;
-		this.etat = etat;
-		this.total = total;
-		this.dateLivraison = dateLivraison;
+	public Commande() {
+
 	}
 
-	public Date getDateCommande() {
+	public Commande(int id, String dateCommande, String etat/*, double total, Date dateLivraison*/) {
+		this.id = id;
+		this.dateCommande = dateCommande;
+		this.etat = etat;
+		/*this.total = total;
+		this.dateLivraison = dateLivraison;*/
+	}
+
+	public Commande(String dateCommande, String etat/*, double total, Date dateLivraison*/) {
+		this.dateCommande = dateCommande;
+		this.etat = etat;
+		/*this.total = total;
+		this.dateLivraison = dateLivraison;*/
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDateCommande() {
 		return dateCommande;
 	}
 
-	public void setDateCommande(Date dateCommande) {
+	public void setDateCommande(String dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 
@@ -33,7 +54,7 @@ public class Commande implements Serializable{
 		this.etat = etat;
 	}
 
-	public double getTotal() {
+	/*public double getTotal() {
 		return total;
 	}
 
@@ -48,7 +69,7 @@ public class Commande implements Serializable{
 	public void setDateLivraison(Date dateLivraison) {
 		this.dateLivraison = dateLivraison;
 	}
-
+*/
 	public void modifierCommande() {
 
 	}

@@ -1,7 +1,6 @@
 package Bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Utilisateur implements Iauthentifier, Serializable {
 	/**
@@ -41,8 +40,9 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		this.email = email;
 		this.password = password;
 	}
-	
-	public Utilisateur(String nom, String prenom, String dateNaissance, String telephone, String email, String password) {
+
+	public Utilisateur(String nom, String prenom, String dateNaissance, String telephone, String email,
+			String password) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
@@ -50,7 +50,6 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		this.email = email;
 		this.password = password;
 	}
-
 
 	public int getId() {
 		return id;
@@ -129,15 +128,16 @@ public class Utilisateur implements Iauthentifier, Serializable {
 	}
 
 	@Override
+	public void connexion() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance
 				+ ", telephone=" + telephone + ", email=" + email + ", password=" + password + ", nomImage=" + nomImage
 				+ "]";
 	}
 
-	@Override
-	public void connexion() {
-		// TODO Auto-generated method stub
-		
-	}
 }

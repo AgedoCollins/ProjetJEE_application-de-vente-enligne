@@ -1,7 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import Bean.Article;
 import Bean.Vendeur;
 import Modele.ModeleArticle;
-import Modele.ModeleVendeur;
 
 /**
  * Servlet implementation class SupprimerArticle

@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.JAXBException;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -85,7 +84,7 @@ public class DAOArticle extends DAO<Article>{
 		return listArticles;
 	}
 	
-	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException 
+	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException, JAXBException 
 	{
 			// TODO Auto-generated method stub
 			Article arti = null;
@@ -100,6 +99,14 @@ public class DAOArticle extends DAO<Article>{
 				ObjectMapper mapper = new ObjectMapper();
 				arti = mapper.readValue(jsonAnswer, Article.class);
 			}
+			
+			/*if(!xmlAnswer.equals("")) {
+				JAXBContext jaxbContext = JAXBContext.newInstance(Article.class);
+				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+				StringReader reader = new StringReader(xmlAnswer);
+				arti = (Article) unmarshaller.unmarshal(reader);
+			}*/
+			
 			return arti;
 	}
 	

@@ -167,7 +167,20 @@ public class Ajouter_Article2 extends HttpServlet {
 					//msg = modele_Article.create(libelle,descriptif,fileNameS,prix,vend.getId()); problème de co
 					msg = modele_Article.create(libelle,prix,descriptif,fileName,vendeur);
 					request.setAttribute("msg", msg);
-					this.getServletContext().getRequestDispatcher("/vues/Ajouter_Article.jsp").forward(request, response);
+					List<Article> listArticles = new ArrayList<>();
+					try {
+						listArticles = modele_Article.findArticlesByVendeur(vendeur);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					request.setAttribute("msg", "L'article a bien été ajouté.");
+					session.setAttribute("libelle", libelle);
+					session.setAttribute("prix", prix);
+					session.setAttribute("descriptif", descriptif);
+					session.setAttribute("listArticles", listArticles);
+					request.setAttribute("listArticles", listArticles);
+					this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
 				}
 				else {
 					msg = "Les champs (*) sont obligatoires";

@@ -1,12 +1,15 @@
 package DAO;
 
 import java.io.IOException;
-import java.io.StringReader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.MediaType;
-import javax.xml.bind.JAXBContext;
+
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+
+import org.json.JSONException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -14,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.representation.Form;
 
-import Bean.Client;
 import Bean.Vendeur;
 
 public class DAOVendeur extends DAO<Vendeur>{
@@ -66,6 +68,42 @@ public class DAOVendeur extends DAO<Vendeur>{
 		}
 		 
 			return vendeur;
+	}
+	
+	public List<Vendeur> findAll() throws JsonParseException, JsonMappingException, IOException, JSONException{
+		Vendeur vend = null;
+
+		List<Vendeur> listVendeurs = new ArrayList<>();
+		String jsonAnswer = connect
+				.path("vendeurs")
+				.path("all")
+				.accept(MediaType.APPLICATION_JSON)
+				.get(String.class);
+		
+		if(!jsonAnswer.equals("")) {
+			ObjectMapper mapper = new ObjectMapper();
+			Vendeur[] vendeur = mapper.readValue(jsonAnswer, Vendeur[].class);
+			
+			for (Vendeur v : vendeur) {
+				vend = new Vendeur();
+				vend.setId(v.getId());
+				vend.setNom(v.getNom());
+				vend.setPrenom(v.getPrenom());
+				vend.setDateNaissance(v.getDateNaissance());	
+				vend.setTelephone(v.getTelephone());	
+				vend.setEmail(v.getEmail());	
+				vend.setPassword(v.getPassword());	
+				listVendeurs.add(vend);
+			}
+			/*JSONObject json = new JSONObject(jsonAnswer);
+			JSONArray tab_articles = json.getJSONArray("articles");*/
+			//int n = tab_articles.length();
+			/*for(int i = 0; i<n; i++) {
+				listArticles.add(art);
+			}*/
+		}
+		
+		return listVendeurs;
 	}
 	
 	@Override

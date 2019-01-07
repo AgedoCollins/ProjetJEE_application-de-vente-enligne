@@ -9,12 +9,11 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.representation.Form;
 
 import java.io.IOException;
-import java.io.StringReader;
 
-import javax.xml.bind.JAXBContext;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
+import org.json.JSONException;
 import Bean.Client;
 import DAO.DAO;
 
@@ -70,6 +69,42 @@ public class DAOClient extends DAO<Client>{
 		}
 		 
 			return client;
+	}
+	
+	public List<Client> findAll() throws JsonParseException, JsonMappingException, IOException, JSONException{
+		Client cli = null;
+
+		List<Client> listClients = new ArrayList<>();
+		String jsonAnswer = connect
+				.path("clients")
+				.path("all")
+				.accept(MediaType.APPLICATION_JSON)
+				.get(String.class);
+		
+		if(!jsonAnswer.equals("")) {
+			ObjectMapper mapper = new ObjectMapper();
+			Client[] client = mapper.readValue(jsonAnswer, Client[].class);
+			
+			for (Client c : client) {
+				cli = new Client();
+				cli.setId(c.getId());
+				cli.setNom(c.getNom());
+				cli.setPrenom(c.getPrenom());
+				cli.setDateNaissance(c.getDateNaissance());	
+				cli.setTelephone(c.getTelephone());	
+				cli.setEmail(c.getEmail());	
+				cli.setPassword(c.getPassword());	
+				listClients.add(cli);
+			}
+			/*JSONObject json = new JSONObject(jsonAnswer);
+			JSONArray tab_articles = json.getJSONArray("articles");*/
+			//int n = tab_articles.length();
+			/*for(int i = 0; i<n; i++) {
+				listArticles.add(art);
+			}*/
+		}
+		
+		return listClients;
 	}
 	
 	@Override

@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Inscription</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css"/>
 </head>
 <body>
 <div class="container">
 	<form action="regit" method="post">
      <fieldset class="type-utilisateur">
-         <legend>Type d'utilisateur</legend>
+         <legend>Inscription</legend>
          <table>
         	 <tr>
          		<td><input type=radio name="utilisateur" value="client">Client</td>
@@ -52,8 +52,8 @@
          </table>
          
      </fieldset>
-     <button type="submit" id="submit">Valider</button>
-     <button type= "reset" >Reset</button>
+     <button type="submit" class="btn btn-info"id="submit">Valider</button>
+     <button type= "reset" class="btn btn-info">Reset</button>
 	</form>
 </div>
 </body>

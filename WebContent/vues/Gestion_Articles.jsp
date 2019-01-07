@@ -16,7 +16,7 @@
 			${empty msg ? '' : msg }
 		</p>
 	<form action="addItem" method="get">
-		<button type="submit">Ajouter un article</button>
+		<button type="submit" class="btn btn-info">Ajouter un article</button>
 	</form>
 	<br><br>
 	<c:set var="index" value="${-1}" scope="page"/>
@@ -34,11 +34,11 @@
 					<td>${article.descriptif}</td>
 					<form action="modifierItem" method="get">
 					<td><input type="hidden" name ="index" value="${index}"/></td>
-					<td><input type="submit" value="Modifier"/></td>
+					<td><input type="submit" class="btn btn-info" value="Modifier"/></td>
 					</form>
 					<form action="deleteItem" method="get">
 					<td><input type="hidden" name ="index" value="${index}"/></td>
-					<td><input type="submit" value="Supprimer"/></td>
+					<td><input type="submit" class="btn btn-info" value="Supprimer"/></td>
 					</form>
 			</tr>
 		</c:forEach>

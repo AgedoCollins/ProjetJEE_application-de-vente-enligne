@@ -24,13 +24,13 @@ import Modele.ModeleVendeur;
  * Servlet implementation class Article
  */
 @WebServlet("/Article")
-public class Gestion_Article extends HttpServlet {
+public class Gestion_Articles extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Gestion_Article() {
+    public Gestion_Articles() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.Date;
+
 import com.sun.jersey.api.client.WebResource;
 
 import Bean.Client;
@@ -7,6 +9,7 @@ import Bean.Client;
 
 public class Main {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		WebResource connect = Link_WebService.getService();
 		DAOClient daoClient = new DAOClient(connect);

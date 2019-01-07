@@ -17,21 +17,21 @@
 	<form action=modificationCorrect method="post">
 		<table>
 			<tr>
-				<td><label for="libelle">Libelle</label></td>
+				<td><label for="libelle">Libelle (*)</label></td>
 				<td><input type="text" name="libelle" value="${libelle}"}/></td>
 			</tr>
 			
 			<tr>
-				<td><label for="prix">Prix</label></td>
+				<td><label for="prix">Prix (*)</label></td>
 				<td><input type="text" name="prix" value="${prix}"}/></td>
 			</tr>
 			
 			<tr>
-				<td><label for="descriptif">Descriptif</label></td>
+				<td><label for="descriptif">Descriptif (*)</label></td>
 				<td><input type="text" name="descriptif" value="${descriptif}"}/></td>
 			</tr>
 		</table>
-		<input type="submit" value="Modifier"/>
+		<input type="submit" class="btn btn-info" value="Modifier"/>
 	</form>
 	</div>
 </body>

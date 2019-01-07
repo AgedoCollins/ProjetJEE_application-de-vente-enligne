@@ -21,11 +21,11 @@
     <url-pattern>/regit</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Gestion_Article</servlet-name>
-    <servlet-class>Servlets.Gestion_Article</servlet-class>
+    <servlet-name>Gestion_Articles</servlet-name>
+    <servlet-class>Servlets.Gestion_Articles</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Gestion_Article</servlet-name>
+    <servlet-name>Gestion_Articles</servlet-name>
     <url-pattern>/items</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -77,6 +77,62 @@
     <url-pattern>/showArticle</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>Afficher_Details_Commande</servlet-name>
+    <servlet-class>Servlets.Afficher_Details_Commande</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Afficher_Details_Commande</servlet-name>
+    <url-pattern>/showCommande</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Gestion_Commandes_Vendeur</servlet-name>
+    <servlet-class>Servlets.Gestion_Commandes_Vendeur</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Gestion_Commandes_Vendeur</servlet-name>
+    <url-pattern>/order</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Gestion_Commandes_Client</servlet-name>
+    <servlet-class>Servlets.Gestion_Commandes_Client</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Gestion_Commandes_Client</servlet-name>
+    <url-pattern>/commande</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Gestion_Catalogue</servlet-name>
+    <servlet-class>Servlets.Gestion_Catalogue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Gestion_Catalogue</servlet-name>
+    <url-pattern>/catalogue</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Traiter_Commande</servlet-name>
+    <servlet-class>Servlets.Traiter_Commande</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Traiter_Commande</servlet-name>
+    <url-pattern>/traiterCommande</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Ajouter_Article_Panier</servlet-name>
+    <servlet-class>Servlets.Ajouter_Article_Panier</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ajouter_Article_Panier</servlet-name>
+    <url-pattern>/ajouterPanier</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>Consulter_Panier</servlet-name>
+    <servlet-class>Servlets.Consulter_Panier</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Consulter_Panier</servlet-name>
+    <url-pattern>/panier</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Deconnexion</servlet-name>
     <servlet-class>Servlets.Deconnexion</servlet-class>
   </servlet>
@@ -85,7 +141,7 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <context-param>
-  <param-name>path_image</param-name>
-  <param-value>E:/Condorcet3IN01A 2018-2019/Quadri 1/Applications Informatiques/Projet/Programme/Projet_JEE/WebContent/images</param-value>
+    <param-name>path_image</param-name>
+    <param-value>E:/Condorcet3IN01A 2018-2019/Quadri 1/Applications Informatiques/Projet/Programme/Projet_JEE/WebContent/images/</param-value>
   </context-param>
 </web-app>
