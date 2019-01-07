@@ -13,6 +13,9 @@
 	href="${pageContext.request.contextPath}/styles/styles.css" />
 </head>
 <body>
+<div class="container">
+		<%@include file="Dashboard_Vendeur.jsp" %>
+</div>
 <div id="divParent" class="container">
 
 		<p  style="color : red">

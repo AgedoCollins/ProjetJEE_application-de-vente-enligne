@@ -70,7 +70,7 @@ public class Modifier_Article2 extends HttpServlet {
 			}
 		}catch(Exception ex) {
 			request.setAttribute("msg", "Le prix doit être un nombre.");
-			this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/vues/Modifier_Article.jsp").forward(request, response);
 		}
 	}
 

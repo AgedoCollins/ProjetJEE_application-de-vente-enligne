@@ -16,7 +16,9 @@
 <body>
 	
 	<div class="container">
-		
+		<%@include file="Dashboard_Client.jsp" %>
+</div>
+<div id="divParent" class="container">
 	<table class="table table-striped table-responsive-md btn-table">
   		<tbody>
   		<tr>
@@ -51,5 +53,4 @@
 	</table>
 	</div>
 </body>
-</div>
 </html>

@@ -63,7 +63,7 @@ public class Ajouter_Article_Panier extends HttpServlet {
 		session.setAttribute("panier", panier);
 		/*request.setAttribute("article", article);
 		session.setAttribute("article", article);*/
-		request.setAttribute("msg", "Cet article a bien été ajouté au panier." + article.getId());
+		request.setAttribute("msg", "Cet article a bien été ajouté au panier.");
 		this.getServletContext().getRequestDispatcher("/vues/Gestion_Catalogue.jsp").forward(request, response);
 	}
 

@@ -31,6 +31,22 @@ public class DAOCommande extends DAO<Commande>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public String create(Commande commande, Client client) {
+		Form f = new Form();
+		f.add("dateCommande", commande.getDateCommande());
+		f.add("etat", commande.getEtat());
+		f.add("id_utilisateur", client.getId());
+		return connect.path("commandes").accept(MediaType.TEXT_PLAIN).post(String.class, f);
+	}
+	
+
+	public String createLigneCommande(Commande commande, Article article) {
+		Form f = new Form();
+		f.add("id_commande", commande.getId());
+		f.add("id_article", article.getId());
+		return connect.path("commandes").accept(MediaType.TEXT_PLAIN).post(String.class, f);
+	}
 
 	@Override
 	public Commande find(Commande obj) {
@@ -175,6 +191,34 @@ public class DAOCommande extends DAO<Commande>{
 		
 		return listCommandes;
 	}
+	
+	public List<Commande> findAllForLastId() throws JsonParseException, JsonMappingException, IOException, JSONException{
+		Commande comm = null;
+
+		List<Commande> listCommandes = new ArrayList<>();
+		String jsonAnswer = connect
+				.path("commandes")
+				.path("lastId")
+				.accept(MediaType.APPLICATION_JSON)
+				.get(String.class);
+		
+		if(!jsonAnswer.equals("")) {
+			ObjectMapper mapper = new ObjectMapper();
+			Commande[] commande = mapper.readValue(jsonAnswer, Commande[].class);
+			
+			for (Commande com : commande) {
+				comm = new Commande();
+				comm.setId(com.getId());
+				comm.setDateCommande(com.getDateCommande());
+				comm.setEtat(com.getEtat());
+			//	comm.setDateLivraison(com.getDateLivraison());
+				listCommandes.add(comm);
+			}
+		}
+		
+		return listCommandes;
+	}
+	
 	@Override
 	public boolean delete(Commande obj) {
 		// TODO Auto-generated method stub

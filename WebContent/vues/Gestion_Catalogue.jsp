@@ -14,18 +14,13 @@
 	href="${pageContext.request.contextPath}/styles/styles.css" />
 </head>
 <body>
+<div class="container">
+		<%@include file="Dashboard_Client.jsp" %>
+</div>
 	<div id="divParent" class="container">
-		<p  style="color : red">
+		<p  style="color : green">
 			${empty msg ? '' : msg }
 		</p>
-		<h1>
-			Bienvenue
-			<jsp:getProperty name="client" property="prenom" />
-			<jsp:getProperty name="client" property="nom" /></h1>
-
-		<ul class="nav navbar-nav">
-			<li><a href="logout">Déconnexion</a></li>
-		</ul>
 		<h1>${empty IdArticle ? '' : IdArticle}</h1>
 		<c:forEach items="${listeArticles}" var="article">
 			<%

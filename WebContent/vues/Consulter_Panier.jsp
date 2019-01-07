@@ -15,7 +15,10 @@
 </head>
 <body>
 <div class="container">
-		<p  style="color : red">
+		<%@include file="Dashboard_Client.jsp" %>
+</div>
+<div id="divParent" class="container">
+		<p  style="color : blue">
 			${empty msg ? '' : msg }
 		</p>
 <c:forEach items="${listArticlesPanier}" var="article">
@@ -40,7 +43,13 @@
   			</tr>
   		</tbody>
 	</table>
-	</div>
 	</c:forEach>
+	<table>
+	<tr>
+	<td><a href="passerCommande?id=${article.getId()}"
+								class="card-link">Commander</a></td>
+	</tr>
+	</table>
+	</div>
 </body>
 </html>
