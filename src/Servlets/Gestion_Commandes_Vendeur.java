@@ -1,0 +1,75 @@
+package Servlets;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.JSONException;
+
+import Bean.Commande;
+import Bean.Vendeur;
+
+import Modele.ModeleCommande;
+import Modele.ModeleVendeur;
+
+/**
+ * Servlet implementation class Gestion_Commandes
+ */
+@WebServlet("/Gestion_Commandes")
+public class Gestion_Commandes_Vendeur extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Gestion_Commandes_Vendeur() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
+		ModeleVendeur modeleVendeur = new ModeleVendeur();
+		ModeleCommande modeleCommande = new ModeleCommande();
+		List<Commande> listCommandes = new ArrayList<>();
+		try {
+			listCommandes = modeleCommande.findAll();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*try {
+			listArticles = modeleVendeur.findArticleByVendeur(vendeur);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}*/
+		request.setAttribute("listCommandes", listCommandes);
+		session.setAttribute("listCommandes", listCommandes);
+		if(listCommandes.size()>0)
+			request.setAttribute("msg", "");
+		else
+			request.setAttribute("msg", "Il n'y a pas de commande.");
+		this.getServletContext().getRequestDispatcher("/vues/Gestion_Commandes_Vendeur.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
