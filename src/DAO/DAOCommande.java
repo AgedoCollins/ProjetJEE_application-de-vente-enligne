@@ -36,7 +36,7 @@ public class DAOCommande extends DAO<Commande>{
 		Form f = new Form();
 		f.add("dateCommande", commande.getDateCommande());
 		f.add("id_utilisateur", client.getId());
-		return connect.path("commandes").accept(MediaType.TEXT_PLAIN).post(String.class, f);
+		return connect.path("commandes").path("ajoutercommande").accept(MediaType.TEXT_PLAIN).post(String.class, f);
 	}
 	
 
