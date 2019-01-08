@@ -132,13 +132,21 @@
     <servlet-name>Consulter_Panier</servlet-name>
     <url-pattern>/panier</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>Passer_Commande</servlet-name>
     <servlet-class>Servlets.Passer_Commande</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Passer_Commande</servlet-name>
     <url-pattern>/passerCommande</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ModifCli</servlet-name>
+    <servlet-class>Servlets.ModifCli</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifCli</servlet-name>
+    <url-pattern>/modifclient</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Deconnexion</servlet-name>

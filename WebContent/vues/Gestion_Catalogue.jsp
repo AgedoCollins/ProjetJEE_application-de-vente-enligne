@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container">
-		<%@include file="Dashboard_Client.jsp" %>
+		<%@include file="Menu_C.html" %>
 </div>
 	<div id="divParent" class="container">
 		<p  style="color : green">

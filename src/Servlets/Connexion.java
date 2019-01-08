@@ -79,7 +79,7 @@ public class Connexion extends HttpServlet {
 					}
 					else {
 						session.setAttribute("vendeur", vendeur);
-						this.getServletContext().getRequestDispatcher("/vues/Dashboard_Vendeur.jsp").forward(request,
+						this.getServletContext().getRequestDispatcher("/vues/Accueil_Vendeur.jsp").forward(request,
 								response);
 					}
 				} else {
@@ -94,7 +94,7 @@ public class Connexion extends HttpServlet {
 					session.setAttribute("listeArticles", listeArticles);
 					session.setAttribute("panier", panier);
 					request.setAttribute("listeArticles", listeArticles);
-					this.getServletContext().getRequestDispatcher("/vues/Dashboard_Client.jsp").forward(request,
+					this.getServletContext().getRequestDispatcher("/vues/Accueil_Client.jsp").forward(request,
 							response);
 				}
 			} catch (JAXBException e) {

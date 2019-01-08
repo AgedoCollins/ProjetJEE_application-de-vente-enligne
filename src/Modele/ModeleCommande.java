@@ -24,18 +24,17 @@ public class ModeleCommande {
 	public String create(String dateCommande, String etat, Client client) {
 		Commande commande = new Commande();
 		commande.setDateCommande(dateCommande);
-		commande.setEtat(etat);
 		return daoCommande.create(commande, client);
 		
 	}
 	
-	public String createLigneCommande(Commande commande, Article article) {
-		return daoCommande.createLigneCommande(commande, article);
+	public String createLigneCommande(Commande commande, Article article, int quantite) {
+		return daoCommande.createLigneCommande(commande, article, quantite);
 		
 	}
 	
-	public List<Commande> findAll() throws JsonParseException, JsonMappingException, IOException, JSONException {
-		return daoCommande.findAll();
+	public List<Article> findAll(Integer id) throws JsonParseException, JsonMappingException, IOException, JSONException {
+		return daoCommande.findAllArticle(id.toString());
 	}
 	
 	public List<Commande> findAllForLastId() throws JsonParseException, JsonMappingException, IOException, JSONException {
@@ -60,7 +59,7 @@ public class ModeleCommande {
 		return lastID;
 	}
 	
-	public String updateTraite(Commande commande) throws JsonParseException, JsonMappingException, IOException, JSONException {
-		return daoCommande.updateTraite(commande);
+	public String updateTraite(int id) throws JsonParseException, JsonMappingException, IOException, JSONException {
+		return daoCommande.updateTraite(id);
 	}
 }

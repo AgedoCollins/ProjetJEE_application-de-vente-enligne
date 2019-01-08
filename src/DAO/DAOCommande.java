@@ -35,16 +35,16 @@ public class DAOCommande extends DAO<Commande>{
 	public String create(Commande commande, Client client) {
 		Form f = new Form();
 		f.add("dateCommande", commande.getDateCommande());
-		f.add("etat", commande.getEtat());
 		f.add("id_utilisateur", client.getId());
 		return connect.path("commandes").accept(MediaType.TEXT_PLAIN).post(String.class, f);
 	}
 	
 
-	public String createLigneCommande(Commande commande, Article article) {
+	public String createLigneCommande(Commande commande, Article article, int quantite) {
 		Form f = new Form();
 		f.add("id_commande", commande.getId());
 		f.add("id_article", article.getId());
+		f.add("quantite", quantite);
 		return connect.path("commandes").accept(MediaType.TEXT_PLAIN).post(String.class, f);
 	}
 
@@ -99,9 +99,6 @@ public class DAOCommande extends DAO<Commande>{
 				commande = new Commande();
 				commande.setId(com.getId());
 				commande.setDateCommande(com.getDateCommande());
-				commande.setEtat(com.getEtat());
-				//commande.setTotal(com.getTotal());
-				//commande.setDateLivraison(com.getDateLivraison());
 				listCommandes.add(commande);
 			}
 		}
@@ -127,9 +124,6 @@ public class DAOCommande extends DAO<Commande>{
 				commande = new Commande();
 				commande.setId(com.getId());
 				commande.setDateCommande(com.getDateCommande());
-				commande.setEtat(com.getEtat());
-				//commande.setTotal(com.getTotal());
-				//commande.setDateLivraison(com.getDateLivraison());
 				listCommandes.add(commande);
 			}
 		}
@@ -165,31 +159,29 @@ public class DAOCommande extends DAO<Commande>{
 		return listArticles;
 	}
 	
-	public List<Commande> findAll() throws JsonParseException, JsonMappingException, IOException, JSONException{
-		Commande comm = null;
-
-		List<Commande> listCommandes = new ArrayList<>();
+	public List<Article> findAllArticle(String id) throws JsonParseException, JsonMappingException, IOException, JSONException{
+		List<Article> listArticles = new ArrayList<>();
 		String jsonAnswer = connect
 				.path("commandes")
 				.path("all")
+				.queryParam("id", id)
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		
 		if(!jsonAnswer.equals("")) {
 			ObjectMapper mapper = new ObjectMapper();
-			Commande[] commande = mapper.readValue(jsonAnswer, Commande[].class);
+			Article[] articles = mapper.readValue(jsonAnswer, Article[].class);
 			
-			for (Commande com : commande) {
-				comm = new Commande();
-				comm.setId(com.getId());
-				comm.setDateCommande(com.getDateCommande());
-				comm.setEtat(com.getEtat());
-			//	comm.setDateLivraison(com.getDateLivraison());
-				listCommandes.add(comm);
+			for (Article art : articles) {
+				Article article = new Article();
+				article.setId(art.getId());
+				article.setLibelle(art.getLibelle());
+				article.setDescriptif(art.getDescriptif());
+				listArticles.add(article);
 			}
 		}
 		
-		return listCommandes;
+		return listArticles;
 	}
 	
 	public List<Commande> findAllForLastId() throws JsonParseException, JsonMappingException, IOException, JSONException{
@@ -210,8 +202,6 @@ public class DAOCommande extends DAO<Commande>{
 				comm = new Commande();
 				comm.setId(com.getId());
 				comm.setDateCommande(com.getDateCommande());
-				comm.setEtat(com.getEtat());
-			//	comm.setDateLivraison(com.getDateLivraison());
 				listCommandes.add(comm);
 			}
 		}
@@ -231,10 +221,9 @@ public class DAOCommande extends DAO<Commande>{
 		return false;
 	}
 	
-	public String updateTraite(Commande commande) {
+	public String updateTraite(int id) {
 		Form f = new Form();
-		f.add("id_commande", commande.getId());
-		f.add("etat", commande.getEtat());
+		f.add("id_article", id);
 		return connect.path("commandes").accept(MediaType.TEXT_PLAIN).put(String.class, f);
 	}
 	

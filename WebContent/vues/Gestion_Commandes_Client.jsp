@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-		<%@include file="Dashboard_Client.jsp" %>
+		<%@include file="Menu_C.html" %>
 </div>
 
 <div id="divParent" class="container">
@@ -29,10 +29,6 @@
 					<tr>
 						<th>Date de la commande :</th>
 						<td>${commande.dateCommande}</td>
-					</tr>
-					<tr>
-						<th>Etat :</th>
-						<td>${commande.etat}</td>
 					</tr>
 					<tr>
  					<form action="showCommande" method="get">

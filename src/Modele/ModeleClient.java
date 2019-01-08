@@ -44,6 +44,18 @@ public class ModeleClient {
 		return daoCommande.findCommandesClient(client/* , "client" */);
 	}
 	
+	public boolean update(String nom, String prenom, String dateNaissance, String telephone, String email,String password, int id) {
+		Client client = new Client();
+		client.setNom(nom);
+		client.setPrenom(prenom);
+		client.setDateNaissance(dateNaissance);
+		client.setTelephone(telephone);
+		client.setEmail(email);
+		client.setPassword(password);
+		client.setId(id);
+		return daoClient.update(client);
+	}
+	
 	public boolean alreadyExist(String email)
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		boolean alreadyExist = false;

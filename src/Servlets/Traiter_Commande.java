@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
+import Bean.Article;
 import Bean.Commande;
 
 import Modele.ModeleCommande;
@@ -39,28 +40,16 @@ public class Traiter_Commande extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
-		List<Commande> listCommandes = (List<Commande>)session.getAttribute("listCommandes");
-		int index =Integer.parseInt((String) request.getParameter("index"));
-		Commande commande = listCommandes.get(index);
+		int id =Integer.parseInt( request.getParameter("index"));
 		ModeleCommande modeleCommande = new ModeleCommande();
 		try {
-			modeleCommande.updateTraite(commande);
+			modeleCommande.updateTraite(id);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		try {
-			listCommandes = modeleCommande.findAll();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listCommandes", listCommandes);
-		session.setAttribute("listCommandes", listCommandes);
-		if(listCommandes.size()>0)
-			request.setAttribute("msg", "");
-		else
-			request.setAttribute("msg", "La commande a bien été traitée.");
+		request.setAttribute("msg", "L'article a bien été traitée.");
 		this.getServletContext().getRequestDispatcher("/vues/Gestion_Commandes_Vendeur.jsp").forward(request, response);
 	}
 

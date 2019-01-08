@@ -14,42 +14,50 @@
 	href="${pageContext.request.contextPath}/styles/styles.css" />
 </head>
 <body>
-<div class="container">
-		<%@include file="Dashboard_Client.jsp" %>
-</div>
-<div id="divParent" class="container">
-		<p  style="color : blue">
-			${empty msg ? '' : msg }
-		</p>
-<c:forEach items="${listArticlesPanier}" var="article">
-	<table class="table table-striped table-responsive-md btn-table">
-  		<tbody>
-  		<tr>
-     		 <td>
-     		 		<img alt="Image de ${article.getLibelle()}" src="file://${sessionScope.path_image}${article.getNomImage()}" class="img-fluid" height="auto">    		
-     		 </td>
-  			</tr>
-    		<tr>
-     		 <th>Libellé : </th>
-     		 <td>${article.getLibelle()}</td>
-  			</tr>
-  			<tr>
-     		 <th>Prix : </th>
-     		 <td>${article.getPrix()}</td>
-  			</tr>
-  			<tr>
-     		 <th>Description : </th>
-     		 <td>${article.getDescriptif()}</td>
-  			</tr>
-  		</tbody>
-	</table>
-	</c:forEach>
-	<table>
-	<tr>
-	<td><a href="passerCommande?id=${article.getId()}"
-								class="card-link">Commander</a></td>
-	</tr>
-	</table>
+	<div class="container">
+		<%@include file="Menu_C.html"%>
+	</div>
+	<div id="divParent" class="container">
+		<p style="color: blue">${empty msg ? '' : msg }</p>
+		<table class="table table-striped table-responsive-md btn-table">
+			<thead>
+				<tr>
+					<th>Libellé :</th>
+					<th>Prix :</th>
+					<th>Description :</th>
+					<th>Quantite :</th>
+				</tr>
+				<%int index = 0; %>
+			<tbody>
+			<form action="passerCommande?id=${article.getId()}"
+						method="get">
+				<c:forEach items="${listArticlesPanier}" var="article">
+				<c:set var="index" value="<%= index %>" />
+					<tr>
+						<td>${article.getLibelle()}</td>
+
+						<td>${article.getPrix()}</td>
+
+						<td>${article.getDescriptif()}</td>
+						
+						<td><input type="number" value="" name="quantite<%=index%>"/></td>
+					</tr>
+					<%index++; %>
+				</c:forEach>
+				
+				<input type="submit" value="Commander" />
+				
+				
+				</form>
+			</tbody>
+		</table>
+		<table>
+			<tr>
+
+				<td>
+				
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

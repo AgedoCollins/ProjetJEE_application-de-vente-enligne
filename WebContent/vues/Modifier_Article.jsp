@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-		<%@include file="Dashboard_Vendeur.jsp" %>
+		<%@include file="Menu_V.html" %>
 </div>
 	<div id="divParent" class="container">
 

@@ -21,7 +21,7 @@ public class Link_WebService {
 
 	
 	private static URI getBaseURI() {
-		return UriBuilder.fromUri("http://localhost:8080/Projet_REST/rest").build();
+		return UriBuilder.fromUri("http://localhost:9090/Projet_REST/rest").build();
 	}
 
 }

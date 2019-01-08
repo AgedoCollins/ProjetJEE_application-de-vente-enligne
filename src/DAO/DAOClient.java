@@ -9,8 +9,9 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.representation.Form;
 
 import java.io.IOException;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.xml.bind.JAXBException;
 import org.json.JSONException;
@@ -62,6 +63,17 @@ public class DAOClient extends DAO<Client>{
 		if(!jsonAnswer.equals("")) {
 			ObjectMapper mapper = new ObjectMapper();
 			client = mapper.readValue(jsonAnswer, Client.class);
+			SimpleDateFormat old = new SimpleDateFormat("YYYY-MM-dd");
+			SimpleDateFormat nouv= new SimpleDateFormat("dd/MM/YYYY");
+			Date tmp;
+			String date;
+			date = client.getDateNaissance();
+			try {
+				tmp = old.parse(date);
+				date = nouv.format(tmp);
+				client.setDateNaissance(date);
+			}
+			catch (Exception err) {}
 		}
 		else
 		{
@@ -114,9 +126,16 @@ public class DAOClient extends DAO<Client>{
 	}
 
 	@Override
-	public boolean update(Client obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean update(Client client) {
+		Form f = new Form();
+		f.add("nom", client.getNom());
+		f.add("prenom", client.getPrenom());
+		f.add("dateNaissance", client.getDateNaissance());
+		f.add("telephone", client.getTelephone());
+		f.add("email", client.getEmail());
+		f.add("password", client.getPassword());
+		f.add("id", client.getId());
+		connect.path("clients").path("update").put(String.class,f);
+		return true;
 	}
-
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
+import Bean.Article;
 import Bean.Commande;
 import Bean.Vendeur;
 
@@ -40,11 +41,10 @@ public class Gestion_Commandes_Vendeur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-		ModeleVendeur modeleVendeur = new ModeleVendeur();
 		ModeleCommande modeleCommande = new ModeleCommande();
-		List<Commande> listCommandes = new ArrayList<>();
+		List<Article> listArticles = new ArrayList<>();
 		try {
-			listCommandes = modeleCommande.findAll();
+			listArticles = modeleCommande.findAll(vendeur.getId());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,9 +55,9 @@ public class Gestion_Commandes_Vendeur extends HttpServlet {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}*/
-		request.setAttribute("listCommandes", listCommandes);
-		session.setAttribute("listCommandes", listCommandes);
-		if(listCommandes.size()>0)
+		request.setAttribute("listArticles", listArticles);
+		session.setAttribute("listArticles", listArticles);
+		if(listArticles.size()>0)
 			request.setAttribute("msg", "");
 		else
 			request.setAttribute("msg", "Il n'y a pas de commande.");

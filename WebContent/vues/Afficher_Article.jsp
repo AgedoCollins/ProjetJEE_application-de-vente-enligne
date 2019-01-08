@@ -16,7 +16,7 @@
 <body>
 	
 	<div class="container">
-		<%@include file="Dashboard_Client.jsp" %>
+		<%@include file="Menu_C.html" %>
 </div>
 <div id="divParent" class="container">
 	<table class="table table-striped table-responsive-md btn-table">

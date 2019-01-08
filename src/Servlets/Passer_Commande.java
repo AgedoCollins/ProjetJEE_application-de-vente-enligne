@@ -6,6 +6,8 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -63,13 +65,20 @@ public class Passer_Commande extends HttpServlet {
 		msg = modeleCommande.create(date, "NON TRAITEE", client);
 		
 		Commande commande = new Commande();
+		ArrayList<Integer> listQuantites = new ArrayList<>();
+		for(int i=0;i<panier.getListArticles().size();i++)
+		{
+			listQuantites.add(Integer.parseInt(request.getParameter("quantite" + i)));
+		}
 		
+		Iterator<Integer> it = listQuantites.iterator();
 		try {
 			int lastId = modeleCommande.findLastId();
 			for(Article article : panier.getListArticles())
 			{
+				
 				commande.setId(lastId);
-				modeleCommande.createLigneCommande(commande, article);
+				modeleCommande.createLigneCommande(commande, article,it.next());
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
