@@ -25,6 +25,10 @@
 	<c:set var="index" value="${index + 1}" />
 			<table class="table table-striped table-responsive-md btn-table">
 				<tbody>
+				<tr>
+						<th>ID :</th>
+						<td>${commande.id}</td>
+					</tr>
 					<tr>
 						<th>Date de la commande :</th>
 						<td>${commande.dateCommande}</td>
