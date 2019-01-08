@@ -25,54 +25,70 @@ import Modele.ModeleCommande;
 @WebServlet("/Afficher_Details_Commande")
 public class Afficher_Details_Commande extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Afficher_Details_Commande() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Afficher_Details_Commande() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
-		//Commande commande = (Commande) session.getAttribute("commande");
-		List<Commande> listCommandes = (List<Commande>)session.getAttribute("listCommandes");
-		int index =Integer.parseInt((String) request.getParameter("index"));
+		// Commande commande = (Commande) session.getAttribute("commande");
+		List<Commande> listCommandes = (List<Commande>) session.getAttribute("listCommandes");
+		int index = Integer.parseInt((String) request.getParameter("index"));
 		Commande commande = listCommandes.get(index);
-		/*session.setAttribute("id", commande.getId());
-		session.setAttribute("dateCommande", commande.getDateCommande());
-		session.setAttribute("etat", commande.getEtat());*/
-		
+		/*
+		 * session.setAttribute("id", commande.getId());
+		 * session.setAttribute("dateCommande", commande.getDateCommande());
+		 * session.setAttribute("etat", commande.getEtat());
+		 */
+
 		ModeleClient modeleClient = new ModeleClient();
 		ModeleCommande modeleCommande = new ModeleCommande();
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			//Commande commande = null;
+			// Commande commande = null;
 			listArticles = modeleCommande.findArticlesByCommande(commande);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+		double prixTotal = 0.0;
+
+		for (Article article : listArticles) {
+			prixTotal += article.getPrix();
+		}
+
 		request.setAttribute("listArticles", listArticles);
 		session.setAttribute("listArticles", listArticles);
 		session.setAttribute("path_image", getServletContext().getInitParameter("path_image"));
-		if(listArticles.size()>0)
+		if (listArticles.size() > 0) {
 			request.setAttribute("msg", "");
-		else
+			request.setAttribute("prixTotal", prixTotal);
+
+		} else {
 			request.setAttribute("msg", "Cette commande ne contient aucun article.");
+			request.setAttribute("prixTotal", "");
+		}
 		this.getServletContext().getRequestDispatcher("/vues/Afficher_Details_Commande.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

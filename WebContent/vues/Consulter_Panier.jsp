@@ -27,27 +27,39 @@
 					<th>Description :</th>
 					<th>Quantite :</th>
 				</tr>
-				<%int index = 0; %>
+				<%
+					int index = 0;
+				%>
+			
 			<tbody>
-			<form action="passerCommande?id=${article.getId()}"
-						method="get">
-				<c:forEach items="${listArticlesPanier}" var="article">
-				<c:set var="index" value="<%= index %>" />
-					<tr>
-						<td>${article.getLibelle()}</td>
+				<form action="passerCommande?id=${article.getId()}" method="get">
+					<c:forEach items="${listArticlesPanier}" var="article">
+						<c:set var="index" value="<%=index%>" />
+						<tr>
+							<td>${article.getLibelle()}</td>
 
-						<td>${article.getPrix()}</td>
+							<td>${article.getPrix()}</td>
 
-						<td>${article.getDescriptif()}</td>
-						
-						<td><input type="number" value="" name="quantite<%=index%>"/></td>
-					</tr>
-					<%index++; %>
-				</c:forEach>
-				
-				<input type="submit" value="Commander" />
-				
-				
+							<td>${article.getDescriptif()}</td>
+
+							<td><input type="number" value="" name="quantite<%=index%>" /></td>
+<!-- 							<form action="supprimerItemFromPanier" method="get"> -->
+<%-- 								<td><input type="hidden" name="index" value="${index}" /></td> --%>
+<!-- 								<td><input type="submit" class="btn btn-info" -->
+<!-- 									value="Supprimer" /></td> -->
+<!-- 							</form> -->
+						</tr>
+						<%
+							index++;
+						%>
+					</c:forEach>
+
+					<input type="submit" class="btn btn-info" value="Commander" />
+					
+					<p  style="color: blue">
+						Prix total de la commande : ${empty prixTotal ? '' : prixTotal } euros
+					</p>
+
 				</form>
 			</tbody>
 		</table>
@@ -55,7 +67,6 @@
 			<tr>
 
 				<td>
-				
 			</tr>
 		</table>
 	</div>

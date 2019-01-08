@@ -56,10 +56,22 @@ public class Consulter_Panier extends HttpServlet {
 			session.setAttribute("listArticlesPanier", listArticles);
 		}
 		
+		double prixTotal = 0.0;
+		for(Article article : panier.getListArticles())
+		{
+			prixTotal += article.getPrix();
+		}
+		
 		if(panier.getListArticles().size()>0)
+		{
 			request.setAttribute("msg", "");
+			request.setAttribute("prixTotal", prixTotal);
+		}
 		else
+		{
 			request.setAttribute("msg", "Votre panier est vide.");
+			request.setAttribute("prixTotal", "");
+		}
 		this.getServletContext().getRequestDispatcher("/vues/Consulter_Panier.jsp").forward(request, response);
 	}
 

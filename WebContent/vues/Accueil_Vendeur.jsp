@@ -12,9 +12,12 @@
 	href="${pageContext.request.contextPath}/styles/styles.css" />
 </head>
 <body>
-	<h1>Bienvenue <jsp:getProperty name="vendeur"
-		property="prenom" /> <jsp:getProperty name="vendeur" property="nom" /></h1>
-		
+	<div id="divParent" class="container">
+		<h1>
+			Bienvenue
+			<jsp:getProperty name="vendeur" property="prenom" />
+			<jsp:getProperty name="vendeur" property="nom" /></h1>
+	</div>
 	<%@include file="Menu_V.html"%>
 </body>
 </html>

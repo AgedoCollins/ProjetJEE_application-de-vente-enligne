@@ -18,6 +18,10 @@
 		<p  style="color : red">
 			${empty msg ? '' : msg }
 		</p>
+		<p  style="color : DarkBlue"> 
+			Prix total de la commande : ${empty prixTotal ? '' : prixTotal } euros
+		</p>
+		
 		<h1>${empty IdArticle ? '' : IdArticle}</h1>
 		<c:forEach items="${listArticles}" var="article">
 			<div class="table table-hover" style="width: 18rem;">
