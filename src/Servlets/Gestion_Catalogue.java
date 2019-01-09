@@ -17,10 +17,6 @@ import Bean.Article;
 import Bean.Commande;
 import Bean.Panier;
 import Bean.Vendeur;
-import Modele.ModeleArticle;
-import Modele.ModeleClient;
-import Modele.ModeleCommande;
-import Modele.ModeleVendeur;
 
 /**
  * Servlet implementation class Gestion_Catalogue
@@ -42,10 +38,10 @@ public class Gestion_Catalogue extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		ModeleArticle modeleArticle = new ModeleArticle();
+		Article article = new Article();
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			listArticles = modeleArticle.findAll();
+			listArticles = article.findAll();
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

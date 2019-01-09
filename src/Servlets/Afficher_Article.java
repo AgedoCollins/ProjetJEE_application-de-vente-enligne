@@ -13,7 +13,6 @@ import javax.xml.bind.JAXBException;
 import org.json.JSONException;
 
 import Bean.Article;
-import Modele.ModeleArticle;
 
 /**
  * Servlet implementation class Afficher_Article
@@ -38,10 +37,10 @@ public class Afficher_Article extends HttpServlet {
 		String id = request.getParameter("id");
 		Article article = null;
 		HttpSession session = request.getSession();
-		ModeleArticle modeleArticle = new ModeleArticle();
+		Article art = new Article();
 		
 		try {
-			article = modeleArticle.findArticle(id);
+			article = art.findArticle(id);
 		} catch (JSONException | JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

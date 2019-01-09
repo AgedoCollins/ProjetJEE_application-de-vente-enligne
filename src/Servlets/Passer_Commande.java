@@ -24,8 +24,6 @@ import Bean.Client;
 import Bean.Commande;
 import Bean.Panier;
 import Bean.Vendeur;
-import Modele.ModeleArticle;
-import Modele.ModeleCommande;
 
 /**
  * Servlet implementation class Passer_Commande
@@ -49,7 +47,7 @@ public class Passer_Commande extends HttpServlet {
 		HttpSession session = request.getSession();
 		Panier panier = (Panier) session.getAttribute("panier");
 		Client client = (Client)session.getAttribute("client");
-		ModeleCommande modeleCommande = new ModeleCommande();
+		Commande commande = new Commande();
 		String msg = new String();
 		
 		/*java.util.Date date = new java.util.Date();
@@ -62,9 +60,9 @@ public class Passer_Commande extends HttpServlet {
 		ZoneId fuseau = ZoneId.systemDefault();
 		ZonedDateTime dateSurFuseau = laDate.atZone(fuseau);
 		String date = format.format(dateSurFuseau);
-		msg = modeleCommande.create(date, "NON TRAITEE", client);
+		msg = commande.create(date, client);
 		
-		Commande commande = new Commande();
+		Commande comm = new Commande();
 		ArrayList<Integer> listQuantites = new ArrayList<>();
 		for(int i=0;i<panier.getListArticles().size();i++)
 		{
@@ -73,12 +71,12 @@ public class Passer_Commande extends HttpServlet {
 		
 		Iterator<Integer> it = listQuantites.iterator();
 		try {
-			int lastId = modeleCommande.findLastId();
+			int lastId = commande.findLastId();
 			for(Article article : panier.getListArticles())
 			{
 				
 				commande.setId(lastId);
-				modeleCommande.createLigneCommande(commande, article,it.next());
+				commande.createLigneCommande(commande, article,it.next());
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

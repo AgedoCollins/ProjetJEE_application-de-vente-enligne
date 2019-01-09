@@ -159,12 +159,12 @@ public class DAOCommande extends DAO<Commande>{
 		return listArticles;
 	}
 	
-	public List<Article> findAllArticle(String id) throws JsonParseException, JsonMappingException, IOException, JSONException{
+	public List<Article> findAllArticle(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException{
 		List<Article> listArticles = new ArrayList<>();
 		String jsonAnswer = connect
 				.path("commandes")
 				.path("all")
-				.queryParam("id", id)
+				.queryParam("id", vendeur.getId() + "")
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		
@@ -176,6 +176,7 @@ public class DAOCommande extends DAO<Commande>{
 				Article article = new Article();
 				article.setId(art.getId());
 				article.setLibelle(art.getLibelle());
+				article.setPrix(art.getPrix());
 				article.setDescriptif(art.getDescriptif());
 				listArticles.add(article);
 			}

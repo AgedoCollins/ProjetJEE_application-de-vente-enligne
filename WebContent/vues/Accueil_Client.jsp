@@ -18,6 +18,9 @@
 			<jsp:getProperty name="client" property="prenom" />
 			<jsp:getProperty name="client" property="nom" /></h1>
 	</div>
+	<div id="divParent" class="container">
+		<p style="color: red">${empty msg ? '' : msg }</p>
+	</div>
 	<%@include file="Menu_C.html"%>
 </body>
 </html>

@@ -16,7 +16,6 @@ import org.json.JSONException;
 
 import Bean.Article;
 import Bean.Panier;
-import Modele.ModeleArticle;
 
 /**
  * Servlet implementation class Consulter_Panier

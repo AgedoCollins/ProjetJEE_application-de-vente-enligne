@@ -17,9 +17,6 @@ import Bean.Article;
 import Bean.Commande;
 import Bean.Vendeur;
 
-import Modele.ModeleCommande;
-import Modele.ModeleVendeur;
-
 /**
  * Servlet implementation class Gestion_Commandes
  */
@@ -41,10 +38,10 @@ public class Gestion_Commandes_Vendeur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-		ModeleCommande modeleCommande = new ModeleCommande();
+		Commande commande = new Commande();
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			listArticles = modeleCommande.findAll(vendeur.getId());
+			listArticles = commande.findAll(vendeur);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

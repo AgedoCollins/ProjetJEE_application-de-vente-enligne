@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import Bean.Client;
 import Bean.Commande;
-import Modele.ModeleClient;
-import Modele.ModeleCommande;
 
 /**
  * Servlet implementation class Gestion_Commandes_Client
@@ -36,9 +34,8 @@ public class Gestion_Commandes_Client extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Client client = (Client)session.getAttribute("client");
-		ModeleClient modeleClient = new ModeleClient();
-		ModeleCommande modeleCommande = new ModeleCommande();
-		List<Commande> listCommandes = modeleClient.findCommandesClient(client);
+		Client cli = new Client();
+		List<Commande> listCommandes = cli.findCommandesClient(client);
 		/*try {
 			listArticles = modeleVendeur.findArticleByVendeur(vendeur);
 		} catch (JSONException e) {

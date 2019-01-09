@@ -16,9 +16,6 @@ import org.json.JSONException;
 import Bean.Article;
 import Bean.Commande;
 
-import Modele.ModeleCommande;
-
-
 /**
  * Servlet implementation class Traiter_Commande
  */
@@ -41,9 +38,9 @@ public class Traiter_Commande extends HttpServlet {
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
 		int id =Integer.parseInt( request.getParameter("index"));
-		ModeleCommande modeleCommande = new ModeleCommande();
+		Commande commande = new Commande();
 		try {
-			modeleCommande.updateTraite(id);
+			commande.updateTraite(id);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

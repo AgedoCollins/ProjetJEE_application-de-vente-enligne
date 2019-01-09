@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import Bean.Article;
 import Bean.Vendeur;
-import Modele.ModeleArticle;
 
 /**
  * Servlet implementation class SupprimerArticle
@@ -40,14 +39,14 @@ public class SupprimerArticle extends HttpServlet {
 			List<Article> listArticle = (List<Article>)session.getAttribute("listArticles");
 			int index =Integer.parseInt((String) request.getParameter("index"));
 			Article article = listArticle.get(index);
-			ModeleArticle modeleArticle = new ModeleArticle();
+			Article art = new Article();
 			Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-			if(modeleArticle.delete(article)) {
+			if(art.delete(article)) {
 				request.setAttribute("msg", "L'article a bien été supprimé.");
 				/*Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
 				ModeleVendeur modeleVendeur = new ModeleVendeur();
 				List<Article> listArticles = modeleVendeur.findArticleVendeur(vendeur);*/
-				List<Article> listArticles = modeleArticle.findArticlesByVendeur(vendeur);
+				List<Article> listArticles = art.findArticlesByVendeur(vendeur);
 				request.setAttribute("listArticles", listArticles);
 				session.setAttribute("listArticles", listArticles);
 				/*if(listArticles.size()>0)

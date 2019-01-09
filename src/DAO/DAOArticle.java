@@ -112,7 +112,7 @@ public class DAOArticle extends DAO<Article>{
 	
 	public List<Article> findArticlesByVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException{
 		Article arti = null;
-
+		
 		List<Article> listArticles = new ArrayList<Article>();
 		String jsonAnswer = connect
 				.path("articles")

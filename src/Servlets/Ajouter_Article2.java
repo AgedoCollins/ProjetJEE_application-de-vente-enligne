@@ -23,7 +23,6 @@ import org.json.JSONException;
 
 import Bean.Article;
 import Bean.Vendeur;
-import Modele.ModeleArticle;
 
 /**
  * Servlet implementation class ajoutArticleCorrect
@@ -161,15 +160,15 @@ public class Ajouter_Article2 extends HttpServlet {
 				if(prix>0 && !descriptif.equals("") && !libelle.equals("") && !fileNameS.equals("")) {
 					
 					// Appel de l'ajout à la db
-					ModeleArticle modele_Article = new ModeleArticle();
+					Article article = new Article();
 					HttpSession session = request.getSession();
 					Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
 					//msg = modele_Article.create(libelle,descriptif,fileNameS,prix,vend.getId()); problème de co
-					msg = modele_Article.create(libelle,prix,descriptif,fileName,vendeur);
+					msg = article.create(libelle,prix,descriptif,fileName,vendeur);
 					request.setAttribute("msg", msg);
 					List<Article> listArticles = new ArrayList<>();
 					try {
-						listArticles = modele_Article.findArticlesByVendeur(vendeur);
+						listArticles = article.findArticlesByVendeur(vendeur);
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

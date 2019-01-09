@@ -14,25 +14,14 @@ public class Utilisateur implements Iauthentifier, Serializable {
 	private String telephone;
 	private String email;
 	private String password;
-	private String nomImage;
 
 	public Utilisateur() {
 
 	}
 
 	public Utilisateur(int id, String nom, String prenom, String dateNaissance, String telephone, String email,
-			String password, String nomImage) {
+			String password) {
 		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateNaissance = dateNaissance;
-		this.telephone = telephone;
-		this.email = email;
-		this.password = password;
-	}
-
-	public Utilisateur(String nom, String prenom, String dateNaissance, String telephone, String email, String password,
-			String nomImage) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
@@ -107,14 +96,6 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		this.password = password;
 	}
 
-	public String getNomImage() {
-		return nomImage;
-	}
-
-	public void setNomImage(String nomImage) {
-		this.nomImage = nomImage;
-	}
-
 	@Override
 	public void consulterProfil() {
 		// TODO Auto-generated method stub
@@ -136,8 +117,7 @@ public class Utilisateur implements Iauthentifier, Serializable {
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance
-				+ ", telephone=" + telephone + ", email=" + email + ", password=" + password + ", nomImage=" + nomImage
-				+ "]";
+				+ ", telephone=" + telephone + ", email=" + email + ", password=" + password + "]";
 	}
 
 }

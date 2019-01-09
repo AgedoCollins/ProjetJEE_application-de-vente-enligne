@@ -19,9 +19,6 @@ import Bean.Article;
 import Bean.Client;
 import Bean.Panier;
 import Bean.Vendeur;
-import Modele.ModeleArticle;
-import Modele.ModeleClient;
-import Modele.ModeleVendeur;
 
 /**
  * Servlet implementation class Connexion
@@ -67,12 +64,12 @@ public class Connexion extends HttpServlet {
 			// Récuperer le client s'il existe dans la session
 			Client client;
 			try {
-				ModeleClient modeleClient = new ModeleClient();
-				client = modeleClient.findLogin(email, password);
+				Client cli = new Client();
+				client = cli.findLogin(email, password);
 				if (client == null) {
-					ModeleVendeur modeleVendeur = new ModeleVendeur();
+					Vendeur vend = new Vendeur();
 					Vendeur vendeur = null;
-					vendeur = modeleVendeur.findLogin(email, password);
+					vendeur = vend.findLogin(email, password);
 					if (vendeur == null)
 					{
 						msg = "Login et/ou mot de passe incorrect.";
@@ -88,8 +85,8 @@ public class Connexion extends HttpServlet {
 					ServletContext servletContext = this.getServletConfig().getServletContext();
 				    String filePath = getServletContext().getInitParameter("path_image");
 					session.setAttribute("client", client);
-					ModeleArticle modArticle = new ModeleArticle();
-					List<Article> listeArticles = modArticle.findAll();
+					Article article = new Article();
+					List<Article> listeArticles = article.findAll();
 					session.setAttribute("path_image", filePath);
 					session.setAttribute("listeArticles", listeArticles);
 					session.setAttribute("panier", panier);

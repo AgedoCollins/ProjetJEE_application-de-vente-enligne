@@ -15,8 +15,6 @@ import org.json.JSONException;
 
 import Bean.Vendeur;
 import Bean.Article;
-import Modele.ModeleArticle;
-import Modele.ModeleVendeur;
 
 
 
@@ -41,11 +39,11 @@ public class Gestion_Articles extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-		ModeleVendeur modeleVendeur = new ModeleVendeur();
-		ModeleArticle modeleArticle = new ModeleArticle();
+		Vendeur vend = new Vendeur();
+		Article article = new Article();
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			listArticles = modeleArticle.findArticlesByVendeur(vendeur);
+			listArticles = article.findArticlesByVendeur(vendeur);
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

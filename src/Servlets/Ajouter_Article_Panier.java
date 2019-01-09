@@ -15,7 +15,6 @@ import org.json.JSONException;
 
 import Bean.Article;
 import Bean.Panier;
-import Modele.ModeleArticle;
 
 /**
  * Servlet implementation class Ajouter_Article_Panier
@@ -41,10 +40,10 @@ public class Ajouter_Article_Panier extends HttpServlet {
 		Article article = null;
 		HttpSession session = request.getSession();
 		Panier panier = (Panier) session.getAttribute("panier");
-		ModeleArticle modeleArticle = new ModeleArticle();
+		Article art = new Article();
 		
 		try {
-			article = modeleArticle.findArticle(id);
+			article = art.findArticle(id);
 		} catch (JSONException | JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

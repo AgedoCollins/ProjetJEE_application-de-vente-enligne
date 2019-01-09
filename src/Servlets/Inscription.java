@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
-import Modele.ModeleClient;
-import Modele.ModeleVendeur;
+import Bean.Client;
+import Bean.Vendeur;
 
 /**
  * Servlet implementation class Inscription
@@ -95,16 +95,22 @@ public class Inscription extends HttpServlet {
 			}
 
 			if (utilisateur.compareTo("client") == 0) {
-				ModeleClient modele_Client = new ModeleClient();
+				Client client = new Client();
+				client.setNom(nom);
+				client.setPrenom(prenom);
+				client.setDateNaissance(dateNaissance);
+				client.setTelephone(telephone);
+				client.setEmail(email);
+				client.setPassword(password);
 				try {
-					if(modele_Client.alreadyExist(email))
+					if(client.alreadyExist(client, email))
 					{
 						request.setAttribute("msg", "Cette adresse e-mail existe déjà.");
 						this.getServletContext().getRequestDispatcher("/vues/Inscription.jsp").forward(request, response);
 					}
 					else
 					{
-						msg = modele_Client.create(nom, prenom, dateNaissance, telephone, email, password);
+						msg = client.create(client);
 						this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
 					}
 				} catch (JSONException e) {
@@ -113,16 +119,16 @@ public class Inscription extends HttpServlet {
 				}
 
 			} else {
-				ModeleVendeur modele_Vendeur = new ModeleVendeur();
+				Vendeur vendeur = new Vendeur();
 				try {
-					if(modele_Vendeur.alreadyExist(email))
+					if(vendeur.alreadyExist(email))
 					{
 						request.setAttribute("msg", "Cette adresse e-mail existe déjà.");
 						this.getServletContext().getRequestDispatcher("/vues/Inscription.jsp").forward(request, response);
 					}
 					else
 					{
-						msg = modele_Vendeur.create(nom, prenom, dateNaissance, telephone, email, password);
+						msg = vendeur.create(nom, prenom, dateNaissance, telephone, email, password);
 						this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
 					}
 				} catch (JSONException e) {

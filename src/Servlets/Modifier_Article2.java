@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import Bean.Article;
 import Bean.Vendeur;
-import Modele.ModeleArticle;
 
 /**
  * Servlet implementation class Modifier_Article2
@@ -49,15 +48,15 @@ public class Modifier_Article2 extends HttpServlet {
 			String descriptif=(String) request.getParameter("descriptif");
 			String nomImage="";
 			Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-			ModeleArticle modeleArticle = new ModeleArticle();
-			String msg=modeleArticle.update(id, libelle, prix, descriptif,nomImage);
+			Article article = new Article();
+			String msg=article.update(id, libelle, prix, descriptif,nomImage);
 			switch(msg) {
 			case "-2" : 
 				request.setAttribute("msg", "Le libelle est vide.");
 				this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
 			break;	
 			case "1" :
-				List<Article> listArticles = modeleArticle.findArticlesByVendeur(vendeur);
+				List<Article> listArticles = article.findArticlesByVendeur(vendeur);
 				request.setAttribute("msg", "L'article a bien été modifié.");
 				session.setAttribute("listArticles", listArticles);
 				request.setAttribute("listArticles", listArticles);
