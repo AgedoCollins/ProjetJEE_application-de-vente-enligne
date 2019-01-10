@@ -80,11 +80,6 @@ public class Commande implements Serializable {
 		return daoCommande.findAllForLastId();
 	}
 
-	public List<Article> findArticlesByCommande(Commande commande)
-			throws JsonParseException, JsonMappingException, IOException, JSONException {
-		return daoCommande.findArticlesByCommande(commande);
-	}
-
 	public int findLastId() throws JsonParseException, JsonMappingException, IOException, JSONException {
 		int lastID = 0;
 		List<Commande> listCommandes = daoCommande.findAllForLastId();

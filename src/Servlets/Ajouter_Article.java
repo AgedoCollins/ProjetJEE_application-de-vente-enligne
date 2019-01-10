@@ -34,34 +34,5 @@ public class Ajouter_Article extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	/*	HttpSession session = request.getSession();
-		try {
-			String libelle=(String) request.getParameter("libelle");
-			double prix=Double.parseDouble(request.getParameter("prix"));
-			String descriptif=(String) request.getParameter("descriptif");
-			String nomImage="";
-			ModeleArticle modeleArticle = new ModeleArticle();
-			String msg=modeleArticle.create(libelle, prix, descriptif,nomImage);
-			switch(msg) {
-			case "-2" : 
-				request.setAttribute("msg", "Le libelle est vide.");
-				this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-			break;	
-			case "1" :
-				List<Article> listArticles = modeleArticle.findAll();
-				request.setAttribute("msg", "L'article a bien été ajouté.");
-				session.setAttribute("listArticles", listArticles);
-				request.setAttribute("listArticles", listArticles);
-				this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-				break;
-				default : 
-					request.setAttribute("msg", msg);
-					this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-				break;
-			}
-		}catch(Exception ex) {
-			request.setAttribute("msg", "Vérifier le prix");
-			this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-		}*/
 	}
 }

@@ -43,10 +43,10 @@ public class Afficher_Details_Commande extends HttpServlet {
 		int index = Integer.parseInt((String) request.getParameter("index"));
 		Commande commande = listCommandes.get(index);
 
-		Commande comm = new Commande();
+		Article art = new Article();
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			listArticles = comm.findArticlesByCommande(commande);
+			listArticles = art.findArticlesByCommande(commande);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

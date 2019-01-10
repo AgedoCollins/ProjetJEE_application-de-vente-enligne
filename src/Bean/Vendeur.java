@@ -52,14 +52,6 @@ public class Vendeur extends Utilisateur implements Serializable {
 		return daoVendeur.findLogin(utilisateur);
 	}
 
-	public List<Article> findArticlesByVendeur(Vendeur vendeur)
-			throws JsonParseException, JsonMappingException, IOException, JSONException {
-		Article article = new Article();
-		List<Article> listArticles = article.findArticlesByVendeur(vendeur);
-
-		return listArticles;
-	}
-	
 	@Override
 	public String create(Utilisateur utilisateur) {
 		if (utilisateur.getNom().equals("") || utilisateur.getPrenom().equals("") || utilisateur.getDateNaissance().equals("") || utilisateur.getTelephone().equals("") || utilisateur.getEmail().equals("")
@@ -84,8 +76,4 @@ public class Vendeur extends Utilisateur implements Serializable {
 
 		return alreadyExist;
 	}
-	
-	/*	public List<Commande> findCommandes(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException {
-	return daoCommande.findCommandesVendeur(vendeur , "vendeur" );
-}*/
 }

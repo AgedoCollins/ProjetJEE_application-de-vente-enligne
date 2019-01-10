@@ -113,12 +113,17 @@ public class Article implements Serializable {
 			throws JsonParseException, JsonMappingException, IOException, JSONException, JAXBException {
 		return daoArticle.findArticle(article);
 	}
-
+	
 	public List<Article> findArticlesByVendeur(Vendeur vendeur)
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		return daoArticle.findArticlesByVendeur(vendeur);
 	}
-
+	
+	public List<Article> findArticlesByCommande(Commande commande)
+			throws JsonParseException, JsonMappingException, IOException, JSONException {
+		return daoArticle.findArticlesByCommande(commande);
+	}
+	
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", descriptif=" + descriptif
