@@ -28,11 +28,6 @@ public class DAOArticle extends DAO<Article>{
 
 	@Override
 	public String create(Article article) {
-		/*Form f = new Form();
-		f.add("libelle",article.getLibelle());
-		f.add("prix", article.getPrix());
-		f.add("descriptif", article.getDescriptif());
-		f.add("nomImage", article.getNomImage());*/
 		return "a";
 	}
 	

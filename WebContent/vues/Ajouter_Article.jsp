@@ -24,7 +24,7 @@
 		<p  style="color : red">
 			${empty msg ? '' : msg }
 		</p>
-	<form action=ajoutCorrect  enctype="multipart/form-data" method="post">
+	<form action=addItem enctype="multipart/form-data" method="post">
 		<table>
 			<tr>
 				<td><label for="libelle">Libelle (*)</label></td>

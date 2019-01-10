@@ -24,7 +24,7 @@
 		<p  style="color : red">
 			${empty msg ? '' : msg }
 		</p>
-	<form action=modificationCorrect method="post">
+	<form action=modifierItem method="post">
 		<table>
 			<tr>
 				<td><label for="libelle">Libelle (*)</label></td>

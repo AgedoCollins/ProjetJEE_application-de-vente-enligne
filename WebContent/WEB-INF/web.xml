@@ -37,28 +37,12 @@
     <url-pattern>/addItem</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Ajouter_Article2</servlet-name>
-    <servlet-class>Servlets.Ajouter_Article2</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Ajouter_Article2</servlet-name>
-    <url-pattern>/ajoutCorrect</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Modifier_Article</servlet-name>
     <servlet-class>Servlets.Modifier_Article</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Modifier_Article</servlet-name>
     <url-pattern>/modifierItem</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Modifier_Article2</servlet-name>
-    <servlet-class>Servlets.Modifier_Article2</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Modifier_Article2</servlet-name>
-    <url-pattern>/modificationCorrect</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>SupprimerArticle</servlet-name>
