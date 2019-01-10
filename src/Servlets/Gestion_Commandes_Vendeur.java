@@ -38,10 +38,10 @@ public class Gestion_Commandes_Vendeur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-		Commande commande = new Commande();
+		Article article = new Article();
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			listArticles = commande.findAll(vendeur);
+			listArticles = article.findAll(vendeur);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -96,12 +96,6 @@ public class DAOVendeur extends DAO<Vendeur>{
 				vend.setPassword(v.getPassword());	
 				listVendeurs.add(vend);
 			}
-			/*JSONObject json = new JSONObject(jsonAnswer);
-			JSONArray tab_articles = json.getJSONArray("articles");*/
-			//int n = tab_articles.length();
-			/*for(int i = 0; i<n; i++) {
-				listArticles.add(art);
-			}*/
 		}
 		
 		return listVendeurs;

@@ -53,41 +53,12 @@ public class DAOCommande extends DAO<Commande>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	/*public List<Commande> findCommandesVendeur(Vendeur vendeur, String classe) throws JsonParseException, JsonMappingException, IOException{
-		Commande commande = null;
-		List<Commande> listCommandes = new ArrayList<>();
-		String jsonAnswer = connect
-				.path("commandes")
-				//.path(vendeur.getId()+"")
-				//.queryParam("classe", classe)
-				.accept(MediaType.APPLICATION_JSON)
-				.get(String.class);
-		if(!jsonAnswer.equals("")) {
-			ObjectMapper mapper = new ObjectMapper();
-			Commande[] comm = mapper.readValue(jsonAnswer, Commande[].class);
-			
-			for (Commande com : comm) {
-				commande = new Commande();
-				commande.setId(com.getId());
-				commande.setDateCommande(com.getDateCommande());
-				commande.setEtat(com.getEtat());
-				//commande.setTotal(com.getTotal());
-				//commande.setDateLivraison(com.getDateLivraison());
-				listCommandes.add(commande);
-			}
-		}
-		
-		return listCommandes;
-	}*/
 	
-	public List<Commande> findCommandesClient(Client client/*, String classe*/) throws JsonParseException, JsonMappingException, IOException{
+	public List<Commande> findCommandesClient(Client client) throws JsonParseException, JsonMappingException, IOException{
 		Commande commande = null;
 		List<Commande> listCommandes = new ArrayList<>();
 		String jsonAnswer = connect
 				.path("commandes")
-				//.path(client.getId()+"")
-				//.queryParam("classe", classe)
 				.queryParam("id", String.valueOf(client.getId()))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
@@ -107,14 +78,12 @@ public class DAOCommande extends DAO<Commande>{
 		return listCommandes;
 	}
 	
-	public List<Commande> findCommandesVendeur(Vendeur vendeur/*, String classe*/) throws JsonParseException, JsonMappingException, IOException{
+	public List<Commande> findCommandesVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException{
 		Commande commande = null;
 		List<Commande> listCommandes = new ArrayList<>();
 		String jsonAnswer = connect
 				.path("commandes")
 				.path("all")
-				//.path(client.getId()+"")
-				//.queryParam("classe", classe)
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		if(!jsonAnswer.equals("")) {
@@ -130,33 +99,6 @@ public class DAOCommande extends DAO<Commande>{
 		}
 		
 		return listCommandes;
-	}
-	
-	public List<Article> findAllArticle(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException{
-		List<Article> listArticles = new ArrayList<>();
-		String jsonAnswer = connect
-				.path("commandes")
-				.path("all") 
-				.queryParam("id", vendeur.getId() + "")
-				.accept(MediaType.APPLICATION_JSON)
-				.get(String.class);
-		
-		if(!jsonAnswer.equals("")) {
-			ObjectMapper mapper = new ObjectMapper();
-			Article[] articles = mapper.readValue(jsonAnswer, Article[].class);
-			
-			for (Article art : articles) {
-				Article article = new Article();
-				article.setId(art.getId());
-				article.setLibelle(art.getLibelle());
-				article.setPrix(art.getPrix());
-				article.setDescriptif(art.getDescriptif());
-				article.setId_commande(art.getId_commande());
-				listArticles.add(article);
-			}
-		}
-		
-		return listArticles;
 	}
 	
 	public List<Commande> findAllForLastId() throws JsonParseException, JsonMappingException, IOException, JSONException{

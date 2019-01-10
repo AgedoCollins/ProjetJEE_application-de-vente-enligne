@@ -69,12 +69,7 @@ public class Commande implements Serializable {
 		return daoCommande.createLigneCommande(commande, article, quantite);
 
 	}
-
-	public List<Article> findAll(Vendeur vendeur)
-			throws JsonParseException, JsonMappingException, IOException, JSONException {
-		return daoCommande.findAllArticle(vendeur);
-	}
-
+	
 	public List<Commande> findAllForLastId()
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		return daoCommande.findAllForLastId();

@@ -114,6 +114,11 @@ public class Article implements Serializable {
 		return daoArticle.findArticle(article);
 	}
 	
+	public List<Article> findAll(Vendeur vendeur)
+			throws JsonParseException, JsonMappingException, IOException, JSONException {
+		return daoArticle.findAllArticle(vendeur);
+	}
+	
 	public List<Article> findArticlesByVendeur(Vendeur vendeur)
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		return daoArticle.findArticlesByVendeur(vendeur);

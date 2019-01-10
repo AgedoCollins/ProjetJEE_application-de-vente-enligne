@@ -69,12 +69,6 @@ public class DAOArticle extends DAO<Article>{
 				arti.setNomImage(art.getNomImage());
 				listArticles.add(arti);
 			}
-			/*JSONObject json = new JSONObject(jsonAnswer);
-			JSONArray tab_articles = json.getJSONArray("articles");*/
-			//int n = tab_articles.length();
-			/*for(int i = 0; i<n; i++) {
-				listArticles.add(art);
-			}*/
 		}
 		
 		return listArticles;
@@ -96,14 +90,34 @@ public class DAOArticle extends DAO<Article>{
 				arti = mapper.readValue(jsonAnswer, Article.class);
 			}
 			
-			/*if(!xmlAnswer.equals("")) {
-				JAXBContext jaxbContext = JAXBContext.newInstance(Article.class);
-				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-				StringReader reader = new StringReader(xmlAnswer);
-				arti = (Article) unmarshaller.unmarshal(reader);
-			}*/
-			
 			return arti;
+	}
+	
+	public List<Article> findAllArticle(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException{
+		List<Article> listArticles = new ArrayList<>();
+		String jsonAnswer = connect
+				.path("articles")
+				.path("all") 
+				.queryParam("id", vendeur.getId() + "")
+				.accept(MediaType.APPLICATION_JSON)
+				.get(String.class);
+		
+		if(!jsonAnswer.equals("")) {
+			ObjectMapper mapper = new ObjectMapper();
+			Article[] articles = mapper.readValue(jsonAnswer, Article[].class);
+			
+			for (Article art : articles) {
+				Article article = new Article();
+				article.setId(art.getId());
+				article.setLibelle(art.getLibelle());
+				article.setPrix(art.getPrix());
+				article.setDescriptif(art.getDescriptif());
+				article.setId_commande(art.getId_commande());
+				listArticles.add(article);
+			}
+		}
+		
+		return listArticles;
 	}
 	
 	public List<Article> findArticlesByVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException{
@@ -129,12 +143,6 @@ public class DAOArticle extends DAO<Article>{
 				arti.setNomImage(art.getNomImage());
 				listArticles.add(arti);
 			}
-			/*JSONObject json = new JSONObject(jsonAnswer);
-			JSONArray tab_articles = json.getJSONArray("articles");*/
-			//int n = tab_articles.length();
-			/*for(int i = 0; i<n; i++) {
-				listArticles.add(art);
-			}*/
 		}
 		
 		return listArticles;
@@ -197,7 +205,4 @@ public class DAOArticle extends DAO<Article>{
 			return connect.path("articles").accept(MediaType.TEXT_PLAIN).put(String.class, f);
 
 	}
-	
-	
-
 }
