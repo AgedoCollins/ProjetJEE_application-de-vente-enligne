@@ -11,6 +11,13 @@
 	href="${pageContext.request.contextPath}/styles/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/styles/styles.css" />
+	
+		<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -31,7 +38,10 @@
 				<c:forEach items="${listArticles}" var="article">
 					<c:set var="index" value="${index + 1}" />
 					<tr>
+					
+						<%-- <td>${article.id_commande}</td>
 
+						<td>${article.id}</td> --%>
 
 						<td>${article.libelle}</td>
 
@@ -44,8 +54,10 @@
 						<td>
 							<form action="traiterCommande" method="get">
 								<input type="submit" class="btn btn-info"
-									value="Traiter l'article" /> <input type="hidden" name="index"
+									value="Traiter l'article" /> <input type="hidden" name="index_article"
 									value="${article.id}" />
+									<input type="hidden" name="index_commande"
+									value="${article.id_commande}" />
 							</form>
 						</td>
 						<%-- 						<td><a href="showCommande?id=${commande.getId()}" class="card-link">Voir --%>
@@ -55,6 +67,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		</div>
 </body>
-</div>
 </html>

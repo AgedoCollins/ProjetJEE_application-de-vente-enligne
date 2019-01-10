@@ -1,8 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,9 +53,7 @@ public class ModifCli extends HttpServlet {
 		String Telephone = request.getParameter("telephone");
 		Client cli = (Client) session.getAttribute("client");
 		int id = cli.getId();
-		SimpleDateFormat d = new SimpleDateFormat("dd/MM/YYYY");
 		try {
-			Date tmp = d.parse(DateNaissance);
 		}
 		catch (Exception err) {
 		    request.setAttribute("msg","Format de date incorrect");
@@ -90,7 +86,7 @@ public class ModifCli extends HttpServlet {
 			client.setId(id);
 			session.setAttribute("client", client);
 			try {
-				if(client.alreadyExist(client, Email))
+				if(client.alreadyExist(client))
 				{
 					request.setAttribute("msg", "Cet adresse e-mail existe déjà.");
 					this.getServletContext().getRequestDispatcher("/vues/ModifierProfilClient.jsp").forward(request, response);

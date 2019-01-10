@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,9 +40,9 @@ public class Ajouter_Article_Panier extends HttpServlet {
 		HttpSession session = request.getSession();
 		Panier panier = (Panier) session.getAttribute("panier");
 		Article art = new Article();
-		
+		art.setId(Integer.parseInt(id));
 		try {
-			article = art.findArticle(id);
+			article = art.findArticle(art);
 		} catch (JSONException | JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

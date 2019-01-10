@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.bind.JAXBException;
-
-import org.json.JSONException;
 
 import Bean.Article;
 import Bean.Panier;
@@ -37,7 +34,6 @@ public class Consulter_Panier extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		@SuppressWarnings("unchecked")
 		Panier panier = (Panier) session.getAttribute("panier");
 		/*int index =Integer.parseInt((String) request.getParameter("index"));
 		Commande commande = listCommandes.get(index);*/

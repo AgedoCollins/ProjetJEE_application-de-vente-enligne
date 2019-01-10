@@ -49,7 +49,12 @@ public class Modifier_Article2 extends HttpServlet {
 			String nomImage="";
 			Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
 			Article article = new Article();
-			String msg=article.update(id, libelle, prix, descriptif,nomImage);
+			article.setId(id);
+			article.setLibelle(libelle);
+			article.setPrix(prix);
+			article.setDescriptif(descriptif);
+			article.setNomImage(nomImage);
+			String msg=article.update(article);
 			switch(msg) {
 			case "-2" : 
 				request.setAttribute("msg", "Le libelle est vide.");

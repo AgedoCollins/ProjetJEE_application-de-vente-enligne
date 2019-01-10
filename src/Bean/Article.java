@@ -21,10 +21,11 @@ public class Article implements Serializable {
 	private double prix;
 	private String descriptif;
 	private String nomImage;
+	private int id_commande;
 
 	private AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	private DAOArticle daoArticle = abstractDAOFactory.getDAOArticle();
-	
+
 	public Article() {
 
 	}
@@ -84,30 +85,20 @@ public class Article implements Serializable {
 		this.nomImage = nomImage;
 	}
 
-	public String create(String libelle, double prix, String descriptif, String nomImage,Vendeur vendeur) {
-		if (libelle.equals(""))
-			return "-2";
-		else {
-			Article article = new Article();
-			article.setLibelle(libelle);
-			article.setPrix(prix);
-			article.setDescriptif(descriptif);
-			article.setNomImage(nomImage);
-			return daoArticle.create(article, vendeur);
-		}
+	public int getId_commande() {
+		return id_commande;
 	}
 
-	public String update(int id, String libelle, double prix, String descriptif, String nomImage) {
-		if (libelle.equals(""))
-			return "-2";
-		else {
-			Article article = new Article();
-			article.setId(id);
-			article.setLibelle(libelle);
-			article.setPrix(prix);
-			article.setDescriptif(descriptif);
-			return daoArticle.updateArticle(article);
-		}
+	public void setId_commande(int id_commande) {
+		this.id_commande = id_commande;
+	}
+
+	public String create(Article article, Vendeur vendeur) {
+		return daoArticle.create(article, vendeur);
+	}
+
+	public String update(Article article) {
+		return daoArticle.updateArticle(article);
 	}
 
 	public boolean delete(Article article) {
@@ -117,20 +108,21 @@ public class Article implements Serializable {
 	public List<Article> findAll() throws JsonParseException, JsonMappingException, IOException, JSONException {
 		return daoArticle.findAll();
 	}
-	
-	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException, JSONException, JAXBException {
-		return daoArticle.findArticle(id);
+
+	public Article findArticle(Article article)
+			throws JsonParseException, JsonMappingException, IOException, JSONException, JAXBException {
+		return daoArticle.findArticle(article);
 	}
-	
-	public List<Article> findArticlesByVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException, JSONException {
+
+	public List<Article> findArticlesByVendeur(Vendeur vendeur)
+			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		return daoArticle.findArticlesByVendeur(vendeur);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", descriptif=" + descriptif
 				+ ", nomImage=" + nomImage + "]";
 	}
-	
-	
+
 }

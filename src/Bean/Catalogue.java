@@ -27,33 +27,4 @@ public class Catalogue implements Serializable{
 	public void supprimerArticleListe(Article article) {
 		listArticles.remove(article);
 	}
-
-	public Article rechercherArticleListe(String libelle) {
-		Article article = new Article();
-		for (Article art : listArticles) {
-			if (art.getLibelle() == libelle) {
-				article.setLibelle(art.getLibelle());
-				article.setDescriptif(art.getDescriptif());
-				article.setPrix(art.getPrix());
-				article.setNomImage(art.getNomImage());
-			}
-		}
-
-		return article;
-	}
-
-	public List<Article> consulterListe() {
-		List<Article> listArt = new ArrayList<>();
-		Article article = new Article();
-		for (Article art : listArticles) {
-
-			article.setLibelle(art.getLibelle());
-			article.setDescriptif(art.getDescriptif());
-			article.setPrix(art.getPrix());
-			article.setNomImage(art.getNomImage());
-
-		}
-
-		return listArt;
-	}
 }

@@ -1,9 +1,32 @@
-<div id="divParent" class="container">
+<!-- <div id="divParent" class="container" class="text-right">
 	<ul class="nav navbar-nav">
 		<li><a href="catalogue">Consulter le catalogue</a></li>
 		<li><a href="panier">Consulter mon panier</a></li>
 		<li><a href="commande">Consulter mes commandes</a></li>
 		<li><a href="modifclient" class="card-link">Modifier profil</a></li>
-		<li><a href="logout">Déconnexion</a></li>
+		<li><a href="logout" class="text-right">Déconnexion</a></li>
 	</ul>
-</div>
+</div> -->
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+     <a class="nav-link" href="catalogue">Consulter le catalogue <span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="panier">Consulter mon panier</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="commande">Consulter mes commandes</a>
+  </li>
+   <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Profil
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="modifclient">Modifier profil</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout">Déconnexion</a>
+      </li>
+</ul>

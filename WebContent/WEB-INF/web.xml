@@ -149,6 +149,14 @@
     <url-pattern>/modifclient</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>SupprimerArticleFromPanier</servlet-name>
+    <servlet-class>Servlets.SupprimerArticleFromPanier</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SupprimerArticleFromPanier</servlet-name>
+    <url-pattern>/supprimerItemFromPanier</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Deconnexion</servlet-name>
     <servlet-class>Servlets.Deconnexion</servlet-class>
   </servlet>

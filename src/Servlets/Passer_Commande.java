@@ -1,14 +1,12 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +21,6 @@ import Bean.Article;
 import Bean.Client;
 import Bean.Commande;
 import Bean.Panier;
-import Bean.Vendeur;
 
 /**
  * Servlet implementation class Passer_Commande
@@ -48,6 +45,7 @@ public class Passer_Commande extends HttpServlet {
 		Panier panier = (Panier) session.getAttribute("panier");
 		Client client = (Client)session.getAttribute("client");
 		Commande commande = new Commande();
+		@SuppressWarnings("unused")
 		String msg = new String();
 		
 		/*java.util.Date date = new java.util.Date();
@@ -60,9 +58,10 @@ public class Passer_Commande extends HttpServlet {
 		ZoneId fuseau = ZoneId.systemDefault();
 		ZonedDateTime dateSurFuseau = laDate.atZone(fuseau);
 		String date = format.format(dateSurFuseau);
-		msg = commande.create(date, client);
+		Commande comma = new Commande();
+		comma.setDateCommande(date);
+		msg = panier.payer(comma, client);
 		
-		Commande comm = new Commande();
 		ArrayList<Integer> listQuantites = new ArrayList<>();
 		for(int i=0;i<panier.getListArticles().size();i++)
 		{

@@ -16,6 +16,7 @@ import java.util.List;
 import javax.xml.bind.JAXBException;
 import org.json.JSONException;
 import Bean.Client;
+import Bean.Utilisateur;
 import DAO.DAO;
 
 public class DAOClient extends DAO<Client>{
@@ -51,12 +52,12 @@ public class DAOClient extends DAO<Client>{
 	 * @throws IOException 
 	 * @throws JsonMappingException 
 	 * @throws JsonParseException ******************************************************/
-	public Client findLogin(String email, String password) throws JAXBException, JsonParseException, JsonMappingException, IOException {
+	public Client findLogin(Utilisateur uti) throws JAXBException, JsonParseException, JsonMappingException, IOException {
 		Client client = null;
 		
 		String jsonAnswer = connect.
-				path("clients").queryParam("email", email)
-				.queryParam("password", password)
+				path("clients").queryParam("email", uti.getEmail())
+				.queryParam("password", uti.getPassword())
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		

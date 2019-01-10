@@ -98,6 +98,7 @@ public class DAOCommande extends DAO<Commande>{
 			for (Commande com : comm) {
 				commande = new Commande();
 				commande.setId(com.getId());
+				commande.setEtat(com.getEtat());
 				commande.setDateCommande(com.getDateCommande());
 				listCommandes.add(commande);
 			}
@@ -163,7 +164,7 @@ public class DAOCommande extends DAO<Commande>{
 		List<Article> listArticles = new ArrayList<>();
 		String jsonAnswer = connect
 				.path("commandes")
-				.path("all")
+				.path("all") 
 				.queryParam("id", vendeur.getId() + "")
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
@@ -178,6 +179,7 @@ public class DAOCommande extends DAO<Commande>{
 				article.setLibelle(art.getLibelle());
 				article.setPrix(art.getPrix());
 				article.setDescriptif(art.getDescriptif());
+				article.setId_commande(art.getId_commande());
 				listArticles.add(article);
 			}
 		}
@@ -222,9 +224,10 @@ public class DAOCommande extends DAO<Commande>{
 		return false;
 	}
 	
-	public String updateTraite(int id) {
+	public String updateTraite(Article article) {
 		Form f = new Form();
-		f.add("id_article", id);
+		f.add("id_article", article.getId());
+		f.add("id_commande", article.getId_commande());
 		return connect.path("commandes").accept(MediaType.TEXT_PLAIN).put(String.class, f);
 	}
 	

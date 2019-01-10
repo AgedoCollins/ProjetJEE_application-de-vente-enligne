@@ -2,14 +2,11 @@ package Servlets;
 
 import java.io.IOException;
 
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -35,12 +32,14 @@ public class Traiter_Commande extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		@SuppressWarnings("unchecked")
-		int id =Integer.parseInt( request.getParameter("index"));
+		Article article = new Article();
+		
+		
+		article.setId(Integer.parseInt( request.getParameter("index_article")));
+		article.setId_commande(Integer.parseInt( request.getParameter("index_commande")));
 		Commande commande = new Commande();
 		try {
-			commande.updateTraite(id);
+			commande.updateTraite(article);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

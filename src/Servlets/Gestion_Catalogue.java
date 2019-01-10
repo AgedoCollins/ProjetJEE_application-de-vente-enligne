@@ -1,8 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONException;
 
 import Bean.Article;
-import Bean.Commande;
-import Bean.Panier;
-import Bean.Vendeur;
+import Bean.Catalogue;
 
 /**
  * Servlet implementation class Gestion_Catalogue
@@ -39,9 +35,10 @@ public class Gestion_Catalogue extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Article article = new Article();
-		List<Article> listArticles = new ArrayList<>();
+		Catalogue listArticles = new Catalogue();
 		try {
-			listArticles = article.findAll();
+			
+			listArticles.setListArticles(article.findAll());
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -53,7 +50,7 @@ public class Gestion_Catalogue extends HttpServlet {
 		}*/
 		request.setAttribute("listArticles", listArticles);
 		session.setAttribute("listArticles", listArticles);
-		if(listArticles.size()>0)
+		if(listArticles.getListArticles().size()>0)
 			request.setAttribute("msg", "");
 		else
 			request.setAttribute("msg", "Le catalogue ne comporte aucun article.");

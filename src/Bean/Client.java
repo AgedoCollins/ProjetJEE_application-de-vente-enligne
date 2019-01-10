@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import DAO.AbstractDAOFactory;
 import DAO.DAOClient;
-import DAO.DAOCommande;
 
 public class Client extends Utilisateur implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -21,7 +20,6 @@ public class Client extends Utilisateur implements Serializable{
 
 	private AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	private DAOClient daoClient = abstractDAOFactory.getDAOClient();
-	private DAOCommande daoCommande = abstractDAOFactory.getDAOCommande();
 	
 	public Client() {
 
@@ -52,18 +50,16 @@ public class Client extends Utilisateur implements Serializable{
 		this.panier = panier;
 	}
 
-	public Client findLogin(String email, String password) throws JAXBException, JsonParseException, JsonMappingException, IOException {
-		return daoClient.findLogin(email, password);
+	@Override
+	public Client findLogin(Utilisateur utilisateur) throws JAXBException, JsonParseException, JsonMappingException, IOException {
+		return daoClient.findLogin(utilisateur);
 	}
 
-	public String create(Client client) {
+	@Override
+	public String create(Utilisateur utilisateur) {
 
-		return daoClient.create(client);
+		return daoClient.create((Client)utilisateur);
 
-	}
-	
-	public List<Commande> findCommandesClient(Client client) throws JsonParseException, JsonMappingException, IOException {
-		return daoCommande.findCommandesClient(client/* , "client" */);
 	}
 	
 	public boolean update(String nom, String prenom, String dateNaissance, String telephone, String email,String password, int id) {
@@ -78,7 +74,8 @@ public class Client extends Utilisateur implements Serializable{
 		return daoClient.update(client);
 	}
 	
-	public boolean alreadyExist(Client client, String email)
+	@Override
+	public boolean alreadyExist(Utilisateur utilisateur)
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		boolean alreadyExist = false;
 		List<Client> listClients = daoClient.findAll();
@@ -86,13 +83,13 @@ public class Client extends Utilisateur implements Serializable{
 		for (Client c : listClients) {
 			if(c.getId() > 0)
 			{
-				if (String.valueOf(c.getEmail()) .equals(String.valueOf(email)) && c.getId() != client.getId()) {
+				if (String.valueOf(c.getEmail()) .equals(String.valueOf(utilisateur.getEmail())) && c.getId() != utilisateur.getId()) {
 					alreadyExist = true;
 				}
 			}
 			else
 			{
-				if (String.valueOf(c.getEmail()) .equals(String.valueOf(email)))
+				if (String.valueOf(c.getEmail()) .equals(String.valueOf(utilisateur.getEmail())))
 				{
 					alreadyExist = true;
 				}

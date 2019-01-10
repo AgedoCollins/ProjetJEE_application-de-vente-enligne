@@ -46,5 +46,9 @@ public class Panier implements Serializable{
 		listArticles.remove(article);
 	}
 	
+	public String payer(Commande commande, Client client)
+	{
+		return new Commande().create(commande, client);
+	}
 	
 }

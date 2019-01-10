@@ -9,19 +9,25 @@
 	href="${pageContext.request.contextPath}/styles/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/styles/styles.css" />
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-		<%@include file="Menu_C.html" %>
+	<div class="container">
+		<%@include file="Menu_C.html"%>
 	</div>
 	<div id="divParent" class="container">
-		<p  style="color : red">
-			${empty msg ? '' : msg }
-		</p>
-		<p  style="color : DarkBlue"> 
-			Prix total de la commande : ${empty prixTotal ? '' : prixTotal } euros
-		</p>
-		
+		<p style="color: red">${empty msg ? '' : msg }</p>
+
 		<h1>${empty IdArticle ? '' : IdArticle}</h1>
 		<c:forEach items="${listArticles}" var="article">
 			<div class="table table-hover" style="width: 18rem;">
@@ -46,8 +52,9 @@
 						</tr>
 					</tbody>
 				</table>
+				</div>
 		</c:forEach>
 		<!-- 	session.getAttribute("path_image") + "//"+ article.getNomImage() -->
+	</div>
 </body>
-</div>
 </html>

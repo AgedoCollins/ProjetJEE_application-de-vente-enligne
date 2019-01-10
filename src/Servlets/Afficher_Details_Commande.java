@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONException;
 
 import Bean.Article;
-import Bean.Client;
 import Bean.Commande;
 
 /**
@@ -40,21 +39,13 @@ public class Afficher_Details_Commande extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
-		// Commande commande = (Commande) session.getAttribute("commande");
 		List<Commande> listCommandes = (List<Commande>) session.getAttribute("listCommandes");
 		int index = Integer.parseInt((String) request.getParameter("index"));
 		Commande commande = listCommandes.get(index);
-		/*
-		 * session.setAttribute("id", commande.getId());
-		 * session.setAttribute("dateCommande", commande.getDateCommande());
-		 * session.setAttribute("etat", commande.getEtat());
-		 */
 
-		Client client = new	Client();
 		Commande comm = new Commande();
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			// Commande commande = null;
 			listArticles = comm.findArticlesByCommande(commande);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -64,6 +55,7 @@ public class Afficher_Details_Commande extends HttpServlet {
 		double prixTotal = 0.0;
 
 		for (Article article : listArticles) {
+			
 			prixTotal += article.getPrix();
 		}
 

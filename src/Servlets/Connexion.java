@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +17,7 @@ import org.json.JSONException;
 import Bean.Article;
 import Bean.Client;
 import Bean.Panier;
+import Bean.Utilisateur;
 import Bean.Vendeur;
 
 /**
@@ -55,6 +55,8 @@ public class Connexion extends HttpServlet {
 		String msg = "";
 		HttpSession session = request.getSession();
 		
+		Utilisateur util;
+		
 		session.setAttribute("email", email);
 		session.setAttribute("password", password);
 	
@@ -64,12 +66,16 @@ public class Connexion extends HttpServlet {
 			// Récuperer le client s'il existe dans la session
 			Client client;
 			try {
-				Client cli = new Client();
-				client = cli.findLogin(email, password);
+				util = new Client();
+				util.setEmail(email);
+				util.setPassword(password);
+				client = (Client) util.findLogin(util);
 				if (client == null) {
-					Vendeur vend = new Vendeur();
+					util = new Vendeur();
+					util.setEmail(email);
+					util.setPassword(password);
 					Vendeur vendeur = null;
-					vendeur = vend.findLogin(email, password);
+					vendeur = (Vendeur) util.findLogin(util);
 					if (vendeur == null)
 					{
 						msg = "Login et/ou mot de passe incorrect.";
@@ -82,7 +88,6 @@ public class Connexion extends HttpServlet {
 				} else {
 					Panier panier = new Panier();
 					panier.setListArticles(new ArrayList<Article>());
-					ServletContext servletContext = this.getServletConfig().getServletContext();
 				    String filePath = getServletContext().getInitParameter("path_image");
 					session.setAttribute("client", client);
 					Article article = new Article();

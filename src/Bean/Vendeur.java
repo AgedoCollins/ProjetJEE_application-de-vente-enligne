@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import DAO.AbstractDAOFactory;
-import DAO.DAOCommande;
 import DAO.DAOVendeur;
 
 public class Vendeur extends Utilisateur implements Serializable {
@@ -22,7 +21,6 @@ public class Vendeur extends Utilisateur implements Serializable {
 
 	private AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	private DAOVendeur daoVendeur = abstractDAOFactory.getDAOVendeur();
-	private DAOCommande daoCommande = abstractDAOFactory.getDAOCommande();
 	
 	public Vendeur() {
 
@@ -48,9 +46,10 @@ public class Vendeur extends Utilisateur implements Serializable {
 		this.listArticles = listArticles;
 	}
 	
-	public Vendeur findLogin(String email, String password)
+	@Override
+	public Vendeur findLogin(Utilisateur utilisateur)
 			throws JAXBException, JsonParseException, JsonMappingException, IOException {
-		return daoVendeur.findLogin(email, password);
+		return daoVendeur.findLogin(utilisateur);
 	}
 
 	public List<Article> findArticlesByVendeur(Vendeur vendeur)
@@ -61,34 +60,24 @@ public class Vendeur extends Utilisateur implements Serializable {
 		return listArticles;
 	}
 	
-	public String create(String nom, String prenom, String dateNaissance, String telephone, String email,
-			String password) {
-		if (nom.equals("") || prenom.equals("") || dateNaissance.equals("") || telephone.equals("") || email.equals("")
-				|| password.equals("")) {
+	@Override
+	public String create(Utilisateur utilisateur) {
+		if (utilisateur.getNom().equals("") || utilisateur.getPrenom().equals("") || utilisateur.getDateNaissance().equals("") || utilisateur.getTelephone().equals("") || utilisateur.getEmail().equals("")
+				|| utilisateur.getPassword().equals("")) {
 			return "-2";
 		} else {
-			Vendeur vendeur = new Vendeur();
-			vendeur.setNom(nom);
-			vendeur.setPrenom(prenom);
-			vendeur.setDateNaissance(dateNaissance);
-			vendeur.setTelephone(telephone);
-			vendeur.setEmail(email);
-			vendeur.setPassword(password);
-			return daoVendeur.create(vendeur);
+			return daoVendeur.create((Vendeur)utilisateur);
 		}
 	}
 
-	public List<Commande> findCommandesVendeur(Vendeur vendeur) throws JsonParseException, JsonMappingException, IOException {
-		return daoCommande.findCommandesVendeur(vendeur/* , "vendeur" */);
-	}
-	
-	public boolean alreadyExist(String email)
+	@Override
+	public boolean alreadyExist(Utilisateur utilisateur)
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		boolean alreadyExist = false;
 		List<Vendeur> listVendeurs = daoVendeur.findAll();
 
 		for (Vendeur v : listVendeurs) {
-			if (String.valueOf(v.getEmail()) .equals(String.valueOf(email))) {
+			if (String.valueOf(v.getEmail()) .equals(String.valueOf(utilisateur.getEmail()))) {
 				alreadyExist = true;
 			}
 		}

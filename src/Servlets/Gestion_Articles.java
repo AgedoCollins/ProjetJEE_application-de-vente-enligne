@@ -39,7 +39,6 @@ public class Gestion_Articles extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-		Vendeur vend = new Vendeur();
 		Article article = new Article();
 		List<Article> listArticles = new ArrayList<>();
 		try {

@@ -84,14 +84,14 @@ public class DAOArticle extends DAO<Article>{
 		return listArticles;
 	}
 	
-	public Article findArticle(String id) throws JsonParseException, JsonMappingException, IOException, JAXBException 
+	public Article findArticle(Article article) throws JsonParseException, JsonMappingException, IOException, JAXBException 
 	{
 			// TODO Auto-generated method stub
 			Article arti = null;
 
 			String jsonAnswer = connect
 					.path("articles/afficher")
-					.path(id)
+					.path(article.getId() + "")
 					.accept(MediaType.APPLICATION_JSON)
 					.get(String.class);
 

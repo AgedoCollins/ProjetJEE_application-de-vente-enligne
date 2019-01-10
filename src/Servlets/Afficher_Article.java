@@ -38,9 +38,9 @@ public class Afficher_Article extends HttpServlet {
 		Article article = null;
 		HttpSession session = request.getSession();
 		Article art = new Article();
-		
+		art.setId(Integer.parseInt(id));
 		try {
-			article = art.findArticle(id);
+			article = art.findArticle(art);
 		} catch (JSONException | JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

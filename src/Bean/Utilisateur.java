@@ -1,8 +1,16 @@
 package Bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 
-public class Utilisateur implements Iauthentifier, Serializable {
+import javax.xml.bind.JAXBException;
+
+import org.json.JSONException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
+public abstract class Utilisateur implements Serializable {
 	/**
 	 * 
 	 */
@@ -96,24 +104,12 @@ public class Utilisateur implements Iauthentifier, Serializable {
 		this.password = password;
 	}
 
-	@Override
-	public void consulterProfil() {
-		// TODO Auto-generated method stub
+	public abstract Utilisateur findLogin(Utilisateur utilisateur) throws JAXBException, JsonParseException, JsonMappingException, IOException;
+	
+	public abstract String create(Utilisateur utilisateur);
 
-	}
-
-	@Override
-	public void modifierProfil() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void connexion() {
-		// TODO Auto-generated method stub
-
-	}
-
+	public abstract boolean alreadyExist(Utilisateur utilisateur) throws JsonParseException, JsonMappingException, IOException, JSONException;
+	
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance

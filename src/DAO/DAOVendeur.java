@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.representation.Form;
 
+import Bean.Utilisateur;
 import Bean.Vendeur;
 
 public class DAOVendeur extends DAO<Vendeur>{
@@ -49,12 +50,12 @@ public class DAOVendeur extends DAO<Vendeur>{
 	 * @throws IOException 
 	 * @throws JsonMappingException 
 	 * @throws JsonParseException ******************************************************/
-	public Vendeur findLogin(String email, String password) throws JAXBException, JsonParseException, JsonMappingException, IOException {
+	public Vendeur findLogin(Utilisateur utilisateur) throws JAXBException, JsonParseException, JsonMappingException, IOException {
 		Vendeur vendeur = null;
 		
 		String jsonAnswer = connect.
-				path("vendeurs").queryParam("email", email)
-				.queryParam("password", password)
+				path("vendeurs").queryParam("email", utilisateur.getEmail())
+				.queryParam("password", utilisateur.getPassword())
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		

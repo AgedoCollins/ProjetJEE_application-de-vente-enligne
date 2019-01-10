@@ -50,40 +50,6 @@ public class Ajouter_Article2 extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//HttpSession session = request.getSession();
-		/*try {
-			String libelle=(String) request.getParameter("libelle");
-			double prix=Double.parseDouble(request.getParameter("prix"));
-			String descriptif=(String) request.getParameter("descriptif");
-			String nomImage="";
-			Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-			ModeleArticle modeleArticle = new ModeleArticle();
-			String msg=modeleArticle.create(libelle, prix, descriptif,nomImage,vendeur);
-			/*switch(msg) {
-			case "-2" : 
-				request.setAttribute("msg", "Le libelle est vide.");
-				this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-			break;	
-			case "1" :
-				List<Article> listArticles = modeleArticle.findArticlesByVendeur(vendeur);
-				request.setAttribute("msg", "L'article a bien été ajouté.");
-				session.setAttribute("listArticles", listArticles);
-				request.setAttribute("listArticles", listArticles);
-				this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-				break;
-				default : 
-					request.setAttribute("msg", msg);
-					this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-				break;
-			}*/
-			
-			
-		/*}catch(Exception ex) {
-			
-			request.setAttribute("msg", "Le prix doit être un nombre." + request.getParameter("prix"));
-			this.getServletContext().getRequestDispatcher("/vues/Gestion_Articles.jsp").forward(request, response);
-		}*/
-		
 		// Create a factory for disk-based file items
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 
@@ -163,14 +129,16 @@ public class Ajouter_Article2 extends HttpServlet {
 					Article article = new Article();
 					HttpSession session = request.getSession();
 					Vendeur vendeur = (Vendeur)session.getAttribute("vendeur");
-					//msg = modele_Article.create(libelle,descriptif,fileNameS,prix,vend.getId()); problème de co
-					msg = article.create(libelle,prix,descriptif,fileName,vendeur);
+					article.setLibelle(libelle);
+					article.setPrix(prix);
+					article.setDescriptif(descriptif);
+					article.setNomImage(fileName);
+					msg = article.create(article,vendeur);
 					request.setAttribute("msg", msg);
 					List<Article> listArticles = new ArrayList<>();
 					try {
 						listArticles = article.findArticlesByVendeur(vendeur);
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					request.setAttribute("msg", "L'article a bien été ajouté.");

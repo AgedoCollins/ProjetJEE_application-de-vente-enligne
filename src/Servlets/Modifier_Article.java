@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Bean.Article;
-import Bean.Vendeur;
 
 /**
  * Servlet implementation class Modifier_Article
@@ -52,14 +51,5 @@ public class Modifier_Article extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		int id = Integer.parseInt(request.getParameter("id"));
-		String libelle = (String) request.getParameter("libelle");
-		double prix = Double.parseDouble(request.getParameter("prix"));
-		String descriptif = (String) request.getParameter("descriptif");
-		String nomImage = "";
-		Vendeur vendeur = (Vendeur) session.getAttribute("vendeur");
-		doGet(request, response);
-
 	}
 }

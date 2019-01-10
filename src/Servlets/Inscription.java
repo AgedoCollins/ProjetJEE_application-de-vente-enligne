@@ -54,6 +54,7 @@ public class Inscription extends HttpServlet {
 		String password = (String) request.getParameter("password");
 		String confirmerPassword = (String) request.getParameter("confirmerPassword");
 		String utilisateur = (String) request.getParameter("utilisateur");
+		@SuppressWarnings("unused")
 		String msg = "";
 
 		HttpSession session = request.getSession();
@@ -103,7 +104,7 @@ public class Inscription extends HttpServlet {
 				client.setEmail(email);
 				client.setPassword(password);
 				try {
-					if(client.alreadyExist(client, email))
+					if(client.alreadyExist(client))
 					{
 						request.setAttribute("msg", "Cette adresse e-mail existe déjà.");
 						this.getServletContext().getRequestDispatcher("/vues/Inscription.jsp").forward(request, response);
@@ -120,15 +121,21 @@ public class Inscription extends HttpServlet {
 
 			} else {
 				Vendeur vendeur = new Vendeur();
+				vendeur.setNom(nom);
+				vendeur.setPrenom(prenom);
+				vendeur.setDateNaissance(dateNaissance);
+				vendeur.setTelephone(telephone);
+				vendeur.setEmail(email);
+				vendeur.setPassword(password);
 				try {
-					if(vendeur.alreadyExist(email))
+					if(vendeur.alreadyExist(vendeur))
 					{
 						request.setAttribute("msg", "Cette adresse e-mail existe déjà.");
 						this.getServletContext().getRequestDispatcher("/vues/Inscription.jsp").forward(request, response);
 					}
 					else
 					{
-						msg = vendeur.create(nom, prenom, dateNaissance, telephone, email, password);
+						msg = vendeur.create(vendeur);
 						this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
 					}
 				} catch (JSONException e) {

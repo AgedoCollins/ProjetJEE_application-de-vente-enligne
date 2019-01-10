@@ -34,8 +34,8 @@ public class Gestion_Commandes_Client extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Client client = (Client)session.getAttribute("client");
-		Client cli = new Client();
-		List<Commande> listCommandes = cli.findCommandesClient(client);
+		Commande commande = new Commande();
+		List<Commande> listCommandes = commande.findCommandesClient(client);
 		/*try {
 			listArticles = modeleVendeur.findArticleByVendeur(vendeur);
 		} catch (JSONException e) {
