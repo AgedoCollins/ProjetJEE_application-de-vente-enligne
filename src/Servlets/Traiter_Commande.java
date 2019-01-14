@@ -45,7 +45,7 @@ public class Traiter_Commande extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("msg", "L'article a bien été traitée.");
+		request.setAttribute("msg", "L'article a bien été traité.");
 		this.getServletContext().getRequestDispatcher("/vues/Gestion_Commandes_Vendeur.jsp").forward(request, response);
 	}
 

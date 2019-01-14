@@ -17,7 +17,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Condorcet3IN01A 2018-2019/Quadri 1/Applications Informatiques/Projet/Programme/Projet_JEE/ojdbc8.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Projet_REST"/>
+	<classpathentry kind="lib" path="G:/Condorcet3IN01A 2018-2019/Quadri 1/Applications Informatiques/Projet/ProjetJEE_DUHANT_AGEDO_WOLFS/Projet_JEE/ojdbc8.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONException;
 
 import Bean.Article;
-import Bean.Commande;
 import Bean.Vendeur;
 
 /**
