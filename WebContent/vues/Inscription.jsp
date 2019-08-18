@@ -17,40 +17,40 @@
 </head>
 <body>
 <div class="container">
+	<h1>Inscription</h1>
 	<form action="regit" method="post">
      <fieldset class="type-utilisateur">
-         <legend>Inscription</legend>
          <table>
         	 <tr>
-         		<td><input type=radio name="utilisateur" value="client">Client</td>
-         		<td><input type=radio name="utilisateur" value="vendeur">Vendeur</td>
+         		<td><input type=radio name="utilisateur" value="client"><strong>Client</strong></td>
+         		<td><input type=radio name="utilisateur" value="vendeur"><strong>Vendeur</strong></td>
          	</tr>
          	<tr>
          		<td colspan=2><p  style="color : red">${empty msg ? '' : msg }</p></td>
          	</tr>
          	<tr>
 	        	<td> <label for="nom">Nom (*)</label></td>
-	         	<td><input id="nom" name="nom" type="text" value="${empty nom ? '' : nom }"/></td>
+	         	<td><input id="nom" name="nom" class="form-control m-md-3" type="text" value="${empty nom ? '' : nom }"/></td>
 	         </tr>
 	         <tr>
 	        	 <td><label for="prenom">Prénom (*)</label></td>
-	         	<td><input id="prenom" name="prenom" type="text" value="${empty prenom ? '' : prenom }"/></td>
+	         	<td><input id="prenom" name="prenom" class="form-control m-md-3" type="text" value="${empty prenom ? '' : prenom }"/></td>
 	         </tr>
 	         <tr>
 	        	 <td><label for="dateNaissance">Date de naissance (*)</label></td>
-	         	<td><input id="dateNaissance" name="dateNaissance" type="text" value="${empty dateNaissance ? '' : dateNaissance }"/></td>
+	         	<td><input id="dateNaissance" class="form-control m-md-3" name="dateNaissance" type="text" value="${empty dateNaissance ? '' : dateNaissance }"/></td>
 	         </tr>
 	         <tr>
 	         	<td><label for="telephone">Téléphone (*)</label></td>
-	         	<td><input id="telephone" name="telephone" type="text" value="${empty telephone ? '' : telephone }"/></td>
+	         	<td><input id="telephone" class="form-control m-md-3" name="telephone" type="text" value="${empty telephone ? '' : telephone }"/></td>
 	         </tr>
 	         <tr>
 	         	<td><label for="email">Email (*)</label></td>
-	         	<td><input id="email" name="email" type="text" value="${empty email ? '' : email }"/></td>
+	         	<td><input id="email" class="form-control m-md-3" name="email" type="text" value="${empty email ? '' : email }"/></td>
 	         </tr>
 	          <tr>
 	         	<td><label for="password">Mot de passe (*)</label></td>
-	         	<td><input id="password" name="password" type="password"value="${empty motdepasse ? '' : motdepasse }"/></td>
+	         	<td><input id="password" class="form-control m-md-3" name="password" type="password"value="${empty motdepasse ? '' : motdepasse }"/></td>
 	         </tr>
 	          <tr>
 	         	<td><label for="password">Confirmer mot de passe (*)</label></td>

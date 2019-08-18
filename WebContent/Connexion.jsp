@@ -11,7 +11,7 @@
 	<div id="divConnexion" class="container">
 		<form action="login" method="post">
 			<fieldset class="connexion">
-				<legend>Connexion</legend>
+				<h1>Connexion</h1>
 				<p  style="color : red">
 					${empty msg ? '' : msg }
 					${empty nouveauUtilisateur ? '' : nouveauUtilisateur}
@@ -27,18 +27,20 @@
  				<br>
   				<div class="input-group">
   					<input type="submit" class="btn btn-info" value="Connexion"/>
+  					ou 
+  					<a href="regit"class="btn btn-info">Créer un compte</a>
   				</div>
 			</fieldset>
 		</form>
 	</div>
 
-	<div id="divInscription" class="container">
-		<br>
-		<p>ou</p>
-		<br>
-		<form action="regit" method="get">
-			<input type="submit" class="btn btn-info" value="Créer un compte"/>
-		</form>
-	</div>
+<!-- 	<div id="divInscription" class="container"> -->
+<!-- 		<br> -->
+<!-- 		<p>ou</p> -->
+<!-- 		<br> -->
+<!-- 		<form action="regit" method="get"> -->
+<!-- 			<input type="submit" class="btn btn-info" value="Créer un compte"/> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 </body>
 </html>

@@ -52,19 +52,12 @@ public class Afficher_Details_Commande extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		double prixTotal = 0.0;
-
-		for (Article article : listArticles) {
-			
-			prixTotal += article.getPrix();
-		}
-
 		request.setAttribute("listArticles", listArticles);
 		session.setAttribute("listArticles", listArticles);
 		session.setAttribute("path_image", getServletContext().getInitParameter("path_image"));
 		if (listArticles.size() > 0) {
 			request.setAttribute("msg", "");
-			request.setAttribute("prixTotal", prixTotal);
+			request.setAttribute("prixTotal", commande.getPrixTotale());
 
 		} else {
 			request.setAttribute("msg", "Cette commande ne contient aucun article.");

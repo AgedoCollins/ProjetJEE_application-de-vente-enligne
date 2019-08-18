@@ -16,11 +16,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-		<%@include file="Menu_V.html" %>
-</div>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_V.html"%>
+	</div>
 	<div id="divParent" class="container">
-
+	<h1>Ajout d'un nouvel article</h1>
 		<p  style="color : red">
 			${empty msg ? '' : msg }
 		</p>
@@ -28,24 +28,25 @@
 		<table>
 			<tr>
 				<td><label for="libelle">Libelle (*)</label></td>
-				<td><input type="text" name="libelle"/></td>
+				<td><input type="text" class="form-control m-md-3" name="libelle"/></td>
 			</tr>
 			
 			<tr>
 				<td><label for="prix">Prix (*)</label></td>
-				<td><input type="text" name="prix"/></td>
+				<td><input type="text" class="form-control m-md-3" name="prix"/></td>
 			</tr>
 			
 			<tr>
 				<td><label for="descriptif">Descriptif (*)</label></td>
-				<td><input type="text" name="descriptif"/></td>
+				<td><input type="text" class="form-control m-md-3" name="descriptif"/></td>
 			</tr>
 			<tr>
 				<td><label for="image">Image (*)</label></td>
-				<td><input type="file" name="image" accept="image/*"/></td>
+				<td><input type="file" class="form-control m-md-3" name="image" accept="image/*"/></td>
 			</tr>
 		</table>
-		<input type="submit" class="btn btn-info" value="Ajouter"/>
+		<input type="submit" class="btn btn-success" value="Ajouter"/>
+		<a href="items" class="btn btn-danger m-md-3">Annuler</a>
 	</form>
 	</div>
 </body>

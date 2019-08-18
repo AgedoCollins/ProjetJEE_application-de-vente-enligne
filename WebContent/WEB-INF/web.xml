@@ -150,6 +150,6 @@
   </servlet-mapping>
   <context-param>
     <param-name>path_image</param-name>
-    <param-value>G:/Condorcet3IN01A 2018-2019/Quadri 1/Applications Informatiques/Projet/Programme/Projet_JEE/WebContent/images/</param-value>
+    <param-value>C:/Users/Collins/Desktop/ProjetJee/ProjetJavaEE/WebContent/images/</param-value>
   </context-param>
 </web-app>

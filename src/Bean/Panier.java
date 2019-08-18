@@ -51,4 +51,17 @@ public class Panier implements Serializable{
 		return new Commande().create(commande, client);
 	}
 	
+	public boolean articleAlreadyExist(Article art) 
+	{
+		boolean alreadyExist = false;
+		
+		for(Article a : listArticles) 
+		{
+			if(a.getId() == art.getId()) 
+			{
+				alreadyExist = true;
+			}
+		}
+		return alreadyExist;
+	}
 }

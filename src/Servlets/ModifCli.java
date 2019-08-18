@@ -1,6 +1,8 @@
 package Servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,14 +54,8 @@ public class ModifCli extends HttpServlet {
 		String Prenom = request.getParameter("prenom");
 		String Telephone = request.getParameter("telephone");
 		Client cli = (Client) session.getAttribute("client");
+
 		int id = cli.getId();
-		try {
-		}
-		catch (Exception err) {
-		    request.setAttribute("msg","Format de date incorrect");
-			this.getServletContext().getRequestDispatcher("/vues/ModifierProfilClient.jsp").forward(request, response);
-			
-		}
 		
 		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 		Pattern pattern = Pattern.compile(regex);
@@ -67,15 +63,34 @@ public class ModifCli extends HttpServlet {
 		
 		if(!DateNaissance.equals("") && !Password.equals("") && !Email.equals("") && !Nom.equals("") && !Prenom.equals("") && !Telephone.equals("") && !ConfirmerPassword.equals("") && id > 0) 
 		{
-			if (!(matcher.matches())) {
+			try 
+			{
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		        String s = DateNaissance;
+		        Date d1 = new Date();
+		        d1 = sdf.parse(s);
+		        String t1 = sdf.format(d1);
+		        if(t1.compareTo(s) !=  0)
+		        	throw new Exception();
+
+			}
+			catch (Exception err) {
+			    request.setAttribute("msg","Format de date incorrect");
+				this.getServletContext().getRequestDispatcher("/vues/ModifierProfilClient.jsp").forward(request, response);
+				
+			}
+			
+			if (!(matcher.matches()))
+			{
 				request.setAttribute("msg", "Veuillez entrer un email valide.");
 				this.getServletContext().getRequestDispatcher("/vues/ModifierProfilClient.jsp").forward(request, response);
 			}
-			if (!Password.equals(ConfirmerPassword)) {
+			
+			if (!Password.equals(ConfirmerPassword)) 
+			{
 				request.setAttribute("msg", "Les mots de passes doivent être identiques.");
 				this.getServletContext().getRequestDispatcher("/vues/ModifierProfilClient.jsp").forward(request, response);
 			}
-			Client c = new Client();
 			Client client = new Client();
 			client.setNom(Nom);
 			client.setPrenom(Prenom);
@@ -84,7 +99,7 @@ public class ModifCli extends HttpServlet {
 			client.setEmail(Email);
 			client.setPassword(Password);
 			client.setId(id);
-			session.setAttribute("client", client);
+
 			try {
 				if(client.alreadyExist(client))
 				{
@@ -93,8 +108,9 @@ public class ModifCli extends HttpServlet {
 				}
 				else
 				{
-					c.update(Nom, Prenom, DateNaissance, Telephone, Email, Password, id);
+					client.update(Nom, Prenom, DateNaissance, Telephone, Email, Password, id);
 					request.setAttribute("msg", "Modifications effectuées");
+					session.setAttribute("client", client);
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -111,5 +127,5 @@ public class ModifCli extends HttpServlet {
 		
 		
 	}
-
+	
 }

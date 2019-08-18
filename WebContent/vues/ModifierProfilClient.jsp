@@ -18,6 +18,10 @@
 <body>
 <%@ page import="Bean.Client" %>
 
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_C.html"%>
+	</div>
+	
 	<div id="divParent" class="container">
 	<h1>Modification du client</h1>
 		<p  style="color : red">
@@ -28,38 +32,47 @@
 		<table>
 			<tr>
 				<td><label for="nom">Nom(*)</label></td>
-				<td><input type="text" name="nom" value="<%=cli.getNom()%>"/></td>
+				<td><input type="text" name="nom" class="form-control m-md-3" value="<%=cli.getNom()%>"/></td>
 			</tr>
+			<tr></tr>
 			
 			<tr>
 				<td><label for="prenom">Prenom(*)</label></td>
-				<td><input type="text" name="prenom" value="<%=cli.getPrenom()%>"/></td>
+				<td><input type="text" name="prenom" class="form-control m-md-3" value="<%=cli.getPrenom()%>"/></td>
 			</tr>
+			<tr></tr>
 			
 			<tr>
 				<td><label for="telephone">Numero de téléphone(*)</label></td>
-				<td><input type="text" name="telephone" value="<%=cli.getTelephone()%>"/></td>
+				<td><input type="text" name="telephone" class="form-control m-md-3" value="<%=cli.getTelephone()%>"/></td>
 			</tr>
+			<tr></tr>
+			
 			<tr>
 				<td><label for="dateNaissance">Date de naissance(*)</label></td>
-				<td><input type="text" name="dateNaissance" value="<%=cli.getDateNaissance()%>"/></td>
+				<td><input type="text" name="dateNaissance" class="form-control m-md-3" value="<%=cli.getDateNaissance()%>"/></td>
 			</tr>
+			<tr></tr>
 			
 			<tr>
 				<td><label for="email">Email(*)</label></td>
-				<td><input type="text" name="email" value="<%=cli.getEmail()%>"/></td>
+				<td><input type="text" name="email" class="form-control m-md-3" value="<%=cli.getEmail()%>"/></td>
 			</tr>
+			<tr></tr>
 			
 			<tr>
 				<td><label for="password">Mot de passe(*)</label></td>
-				<td><input type="password" name="password" value="<%=cli.getPassword()%>"/></td>
+				<td><input type="password" name="password" class="form-control m-md-3" value="<%=cli.getPassword()%>"/></td>
 			</tr>
+			<tr></tr>
+			
 			<tr>
 				<td><label for="confirmerPassword">Confimer le mot de passe(*)</label></td>
-				<td><input type="password" name="confirmerPassword" value="<%=cli.getPassword()%>"/></td>
+				<td><input type="password" class="form-control m-md-3" name="confirmerPassword" value="<%=cli.getPassword()%>"/></td>
 			</tr>
 		</table>
-		<input type="submit" class="btn btn-info" value="Modifier"/>
+		<input type="submit" class="btn btn-success m-md-3" value="Modifier"/>
+		<a href="catalogue" class="btn btn-danger m-md-3">Annuler</a>
 	</form>
 	</div>
 </body>

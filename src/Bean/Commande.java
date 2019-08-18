@@ -17,7 +17,8 @@ public class Commande implements Serializable {
 	private int id;
 	private String dateCommande;
 	private String etat;
-
+	private double prixTotale; 
+	
 	private AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	private DAOCommande daoCommande = abstractDAOFactory.getDAOCommande();
 
@@ -25,15 +26,25 @@ public class Commande implements Serializable {
 
 	}
 
-	public Commande(int id, String dateCommande, String etat) {
+	public Commande(int id, String dateCommande, String etat,double prixTotale) {
 		this.id = id;
 		this.dateCommande = dateCommande;
 		this.etat = etat;
+		this.prixTotale = prixTotale;
 	}
 
-	public Commande(String dateCommande, String etat) {
+	public Commande(String dateCommande, String etat, double prixTotale) {
 		this.dateCommande = dateCommande;
 		this.etat = etat;
+		this.prixTotale = prixTotale;
+	}
+
+	public double getPrixTotale() {
+		return prixTotale;
+	}
+
+	public void setPrixTotale(double prixTotale) {
+		this.prixTotale = prixTotale;
 	}
 
 	public int getId() {

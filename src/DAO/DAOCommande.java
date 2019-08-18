@@ -36,6 +36,7 @@ public class DAOCommande extends DAO<Commande>{
 		Form f = new Form();
 		f.add("dateCommande", commande.getDateCommande());
 		f.add("id_utilisateur", client.getId());
+		f.add("prix_Totale", commande.getPrixTotale());
 		return connect.path("commandes").path("ajoutercommande").accept(MediaType.TEXT_PLAIN).post(String.class, f);
 	}
 	
@@ -71,6 +72,7 @@ public class DAOCommande extends DAO<Commande>{
 				commande.setId(com.getId());
 				commande.setEtat(com.getEtat());
 				commande.setDateCommande(com.getDateCommande());
+				commande.setPrixTotale(com.getPrixTotale());
 				listCommandes.add(commande);
 			}
 		}

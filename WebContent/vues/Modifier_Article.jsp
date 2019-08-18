@@ -16,11 +16,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-		<%@include file="Menu_V.html" %>
-</div>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_V.html"%>
+	</div>
 	<div id="divParent" class="container">
-
+	<h1>Modification de l'article</h1>
 		<p  style="color : red">
 			${empty msg ? '' : msg }
 		</p>
@@ -28,20 +28,21 @@
 		<table>
 			<tr>
 				<td><label for="libelle">Libelle (*)</label></td>
-				<td><input type="text" name="libelle" value="${libelle}"}/></td>
+				<td><input type="text" class="form-control m-md-3" name="libelle" value="${libelle}"}/></td>
 			</tr>
 			
 			<tr>
 				<td><label for="prix">Prix (*)</label></td>
-				<td><input type="text" name="prix" value="${prix}"}/></td>
+				<td><input type="text" name="prix" class="form-control m-md-3" value="${prix}"}/></td>
 			</tr>
 			
 			<tr>
 				<td><label for="descriptif">Descriptif (*)</label></td>
-				<td><input type="text" name="descriptif" value="${descriptif}"}/></td>
+				<td><input type="text" name="descriptif" class="form-control m-md-3" value="${descriptif}"}/></td>
 			</tr>
 		</table>
 		<input type="submit" class="btn btn-info" value="Modifier"/>
+		<a href="items" class="btn btn-danger m-md-3">Annuler</a>
 	</form>
 	</div>
 </body>

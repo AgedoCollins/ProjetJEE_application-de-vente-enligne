@@ -22,6 +22,7 @@ public class Article implements Serializable {
 	private String descriptif;
 	private String nomImage;
 	private int id_commande;
+	private String etat;
 
 	private AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	private DAOArticle daoArticle = abstractDAOFactory.getDAOArticle();
@@ -30,19 +31,29 @@ public class Article implements Serializable {
 
 	}
 
-	public Article(int id, String libelle, double prix, String descriptif, String nomImage) {
+	public Article(int id, String libelle, double prix, String descriptif, String nomImage, String etat) {
 		this.id = id;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.descriptif = descriptif;
 		this.nomImage = nomImage;
+		this.etat = etat;
 	}
 
-	public Article(String libelle, double prix, String descriptif, String nomImage) {
+	public Article(String libelle, double prix, String descriptif, String nomImage, String etat) {
 		this.libelle = libelle;
 		this.prix = prix;
 		this.descriptif = descriptif;
 		this.nomImage = nomImage;
+		this.etat = etat;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 
 	public int getId() {

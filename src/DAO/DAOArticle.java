@@ -113,6 +113,7 @@ public class DAOArticle extends DAO<Article>{
 				article.setPrix(art.getPrix());
 				article.setDescriptif(art.getDescriptif());
 				article.setId_commande(art.getId_commande());
+				article.setEtat(art.getEtat());
 				listArticles.add(article);
 			}
 		}
@@ -153,6 +154,7 @@ public class DAOArticle extends DAO<Article>{
 
 		List<Article> listArticles = new ArrayList<Article>();
 		String jsonAnswer = connect
+				.path("articles")
 				.path("commandes")
 				.path(commande.getId() + "")
 				.accept(MediaType.APPLICATION_JSON)
@@ -169,6 +171,7 @@ public class DAOArticle extends DAO<Article>{
 				arti.setPrix(art.getPrix());
 				arti.setDescriptif(art.getDescriptif());
 				arti.setNomImage(art.getNomImage());
+				arti.setEtat(art.getEtat());
 				listArticles.add(arti);
 			}
 		}

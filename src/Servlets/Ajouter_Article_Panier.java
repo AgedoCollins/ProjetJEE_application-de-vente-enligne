@@ -53,16 +53,20 @@ public class Ajouter_Article_Panier extends HttpServlet {
 			panier = new Panier();
 			
 		}
-			//panier.setListArticles(listArticles);
+		
+		if(panier.articleAlreadyExist(article))
+		{
+			request.setAttribute("msg", "Cet article est déjà dans le panier.");
+			this.getServletContext().getRequestDispatcher("/vues/Afficher_Article.jsp?id="+id+"").forward(request, response);
+		}
+		else 
+		{
 			panier.ajouterArticle(article);
-		
-		
-		request.setAttribute("panier", panier);
-		session.setAttribute("panier", panier);
-		/*request.setAttribute("article", article);
-		session.setAttribute("article", article);*/
-		request.setAttribute("msg", "Cet article a bien été ajouté au panier.");
-		this.getServletContext().getRequestDispatcher("/vues/Gestion_Catalogue.jsp").forward(request, response);
+			request.setAttribute("panier", panier);
+			session.setAttribute("panier", panier);
+			request.setAttribute("msg", "Cet article a bien été ajouté au panier.");
+			this.getServletContext().getRequestDispatcher("/vues/Gestion_Catalogue.jsp").forward(request, response);
+		}
 	}
 
 	/**

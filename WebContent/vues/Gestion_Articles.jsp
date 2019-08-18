@@ -23,26 +23,31 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<%@include file="Menu_V.html"%>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_V.html"%>
 	</div>
 	<div id="divParent" class="container">
+	<h1>Liste d'article du vendeur</h1>
 
 		<p style="color: red">${empty msg ? '' : msg }</p>
 		<br> <br>
 		<c:set var="index" value="${-1}" scope="page" />
 		<table class="table table-hover">
 			<tr>
-				<td>Libelle</td>
-				<td>Prix</td>
-				<td>Descriptif</td>
+				<th>Libelle</th>
+				<th>Prix</th>
+				<th>Descriptif</th>
+				<th></th>
+				<th>Modification du produit</th>
+				<th></th>
+				<th>Suppression du produit</th>
 			</tr>
 			<c:forEach items="${listArticles}" var="article">
 				<c:set var="index" value="${index + 1}" />
 				<tr>
-					<td>${article.libelle}</td>
-					<td>${article.prix}</td>
-					<td>${article.descriptif}</td>
+					<td><strong>${article.libelle}</strong></td>
+					<td><strong>${article.prix}</strong></td>
+					<td><strong>${article.descriptif}</strong></td>
 					<form action="modifierItem" method="get">
 						<td><input type="hidden" name="index" value="${index}" /></td>
 						<td><input type="submit" class="btn btn-info"
@@ -55,11 +60,13 @@
 					</form>
 				</tr>
 			</c:forEach>
+		</table>
+		
+		<table>
 			<tr>
 				<td>
 					<form action="addItem" method="get">
-						<button type="submit" class="btn btn-info">Ajouter un
-							article</button>
+						<button type="submit" class="btn btn-info">Ajouter un article</button>
 					</form>
 				</td>
 			</tr>

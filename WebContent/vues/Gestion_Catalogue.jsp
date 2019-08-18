@@ -28,44 +28,36 @@
 
 </head>
 <body>
-	<div class="container">
-		<%@include file="Menu_C.html"%>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_C.html"%>
 	</div>
 	<div id="divParent" class="container">
-		<p style="color: green">${empty msg ? '' : msg }</p>
+		<h1>Catalogue</h1>
+
+		<p style="color: green; font-weight:bold;">${empty msg ? '' : msg }</p>
 		<h1>${empty IdArticle ? '' : IdArticle}</h1>
-		<div class="table table-hover" style="width: 18rem;">
+		<div id="gestion-catalogue" style="width: 18rem;">
 
 			<c:forEach items="${listeArticles}" var="article">
 				<%
 					Article article = (Article) pageContext.getAttribute("article");
 				%>
-				<table class="table table-striped table-responsive-md btn-table">
-					<tbody>
-
-						<tr>
-							<td><img alt="Image de ${article.getLibelle()}"
-								src="file://${sessionScope.path_image}${article.getNomImage()}"
-								height="224" width="250" class="img-fluid"></td>
-						</tr>
-						<tr>
-							<th>Libellé :</th>
-							<td>${article.getLibelle()}</td>
-						</tr>
-						<tr>
-							<th>Prix :</th>
-							<td>${article.getPrix()}</td>
-						</tr>
-						<tr>
-							<th>Description :</th>
-							<td>${article.getDescriptif()}</td>
-						</tr>
-						<tr>
-							<td><a href="showArticle?id=${article.getId()}"
-								class="card-link">Voir article</a></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="card carte" style="width: 18rem;">
+				  <img alt="Image de ${article.getLibelle()}"
+								src="${pageContext.request.contextPath}/images${article.getNomImage()}"
+								height="224" width="250" class="img-fluid">
+				  <div class="card-body">
+				    <h5 class="card-title">${article.getLibelle()}</h5>
+				    <p class="card-text"><strong>Description :</strong> ${article.getDescriptif()}</p>
+				  </div>
+				  <ul class="list-group list-group-flush">
+				    <li class="list-group-item"><strong>Prix :</strong> ${article.getPrix()}</li>
+				  </ul>
+				  <div class="card-body">
+				    <a href="showArticle?id=${article.getId()}"
+								class="card-link">Voir article</a>
+				  </div>
+				</div>
 			</c:forEach>
 
 			<!-- 	session.getAttribute("path_image") + "//"+ article.getNomImage() -->

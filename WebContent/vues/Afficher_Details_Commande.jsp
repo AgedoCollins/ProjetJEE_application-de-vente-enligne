@@ -22,39 +22,35 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<%@include file="Menu_C.html"%>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_C.html"%>
 	</div>
 	<div id="divParent" class="container">
+		<h1>Détail d'article acheté</h1>
+	
 		<p style="color: red">${empty msg ? '' : msg }</p>
 
 		<h1>${empty IdArticle ? '' : IdArticle}</h1>
 		<c:forEach items="${listArticles}" var="article">
-			<div class="table table-hover" style="width: 18rem;">
-				<table class="table table-striped table-responsive-md btn-table">
-					<tbody>
-						<tr>
-							<td><img alt="Image de ${article.getLibelle()}"
-								src="file://${sessionScope.path_image}${article.getNomImage()}"
-								class="img-fluid" height="auto"></td>
-						</tr>
-						<tr>
-							<th>Libellé :</th>
-							<td>${article.getLibelle()}</td>
-						</tr>
-						<tr>
-							<th>Prix :</th>
-							<td>${article.getPrix()}</td>
-						</tr>
-						<tr>
-							<th>Description :</th>
-							<td>${article.getDescriptif()}</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="card carte" style="width: 18rem;">
+				  <img alt="Image de ${article.getLibelle()}"
+								src="${pageContext.request.contextPath}/images${article.getNomImage()}"
+								height="224" width="250" class="img-fluid">
+				  <div class="card-body">
+				    <h5 class="card-title">${article.getLibelle()}</h5>
+				    <p class="card-text"><strong>Description :</strong> ${article.getDescriptif()}</p>
+				  </div>
+				  <ul class="list-group list-group-flush">
+				    <li class="list-group-item"><strong>Prix :</strong> ${article.getPrix()}</li>
+				  </ul>
+				  <ul class="list-group list-group-flush">
+				    <li class="list-group-item"><strong>Etat :</strong> ${article.getEtat()}</li>
+				  </ul>
 				</div>
 		</c:forEach>
-		<!-- 	session.getAttribute("path_image") + "//"+ article.getNomImage() -->
+		<div>
+			<a href="commande" class="btn btn-primary btn-lg active pull-right" role="button" aria-pressed="true"> Retour</a>
+		</div>
 	</div>
 </body>
 </html>

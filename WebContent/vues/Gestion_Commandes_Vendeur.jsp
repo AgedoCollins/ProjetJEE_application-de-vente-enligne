@@ -20,10 +20,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<%@include file="Menu_V.html"%>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_V.html"%>
 	</div>
 	<div id="divParent" class="container">
+	<h1>Liste d'articles du vendeur commandés</h1>
 
 		<p style="color: red">${empty msg ? '' : msg }</p>
 		<table class="table table-striped table-responsive-md btn-table">
@@ -32,24 +33,17 @@
 					<th>Libellé</th>
 					<th>Prix</th>
 					<th>Description</th>
+					<th>Etat</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${listArticles}" var="article">
 					<c:set var="index" value="${index + 1}" />
 					<tr>
-					
-						<%-- <td>${article.id_commande}</td>
-
-						<td>${article.id}</td> --%>
-
-						<td>${article.libelle}</td>
-
-
-						<td>${article.prix}</td>
-
-
-						<td>${article.descriptif}</td>
+						<td><strong>${article.libelle}</strong></td>
+						<td><strong>${article.prix}</strong></td>
+						<td><strong>${article.descriptif}</strong></td>
+						<td><strong>${article.etat}</strong></td>
 						
 						<td>
 							<form action="traiterCommande" method="get">
@@ -60,13 +54,10 @@
 									value="${article.id_commande}" />
 							</form>
 						</td>
-						<%-- 						<td><a href="showCommande?id=${commande.getId()}" class="card-link">Voir --%>
-						<!--  				        le détail de la commande</a></td>  -->
 					</tr>
-
 				</c:forEach>
 			</tbody>
 		</table>
-		</div>
+	</div>
 </body>
 </html>

@@ -132,6 +132,7 @@ public class Ajouter_Article extends HttpServlet {
 					article.setLibelle(libelle);
 					article.setPrix(prix);
 					article.setDescriptif(descriptif);
+					fileName = "/"+fileName;
 					article.setNomImage(fileName);
 					msg = article.create(article,vendeur);
 					request.setAttribute("msg", msg);

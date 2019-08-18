@@ -22,15 +22,19 @@
 </head>
 <body>
 	
-	<div class="container">
-		<%@include file="Menu_C.html" %>
-</div>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_C.html"%>
+	</div>
 <div id="divParent" class="container">
+	<h1>Article : ${article.getLibelle()}</h1>
+
+		<p style="color : red">${empty msg ? '' : msg }</p>
+		
 	<table class="table table-striped table-responsive-md btn-table">
   		<tbody>
   		<tr>
      		 <td>
-     		 		<img alt="Image de ${article.getLibelle()}" src="file://${sessionScope.path_image}${article.getNomImage()}" class="img-fluid" height="auto">    		
+     		 		<img alt="Image de ${article.getLibelle()}" src="${pageContext.request.contextPath}/images${article.getNomImage()}" class="img-fluid" height="auto">    		
      		 </td>
   			</tr>
     		<tr>
@@ -46,15 +50,11 @@
      		 <td>${article.getDescriptif()}</td>
   			</tr>
   			<tr>
-  			<td><a href="ajouterPanier?id=${article.getId()}"
-								class="card-link">Ajouter au panier</a></td>
-<!--   			<form action="" method="get"> -->
-<!--  					<td><input type="submit" class="btn btn-info" value="Ajouter au panier"/></td> -->
-<%-- 					<td><input type="hidden" name ="index" value="${article.getId()}"/></td> --%>
-<!-- 					</form> -->
-<!--   			<td> -->
-<!-- 		      <a class="btn btn-primary" href="#" role="button">Ajouter au panier</a> -->
-<!-- 		      </td> -->
+  			<td>
+  				<a href="ajouterPanier?id=${article.getId()}" class="btn btn-success" role="button">Ajouter au panier</a>
+  				</td>
+  				<td><a href="catalogue" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Retour</a>
+  				</td>
   			</tr>
   		</tbody>
 	</table>

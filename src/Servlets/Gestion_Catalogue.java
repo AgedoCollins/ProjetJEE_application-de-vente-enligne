@@ -43,11 +43,7 @@ public class Gestion_Catalogue extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		/*try {
-			listArticles = modeleVendeur.findArticleByVendeur(vendeur);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}*/
+		
 		request.setAttribute("listArticles", listArticles);
 		session.setAttribute("listArticles", listArticles);
 		if(listArticles.getListArticles().size()>0)
@@ -56,6 +52,7 @@ public class Gestion_Catalogue extends HttpServlet {
 			request.setAttribute("msg", "Le catalogue ne comporte aucun article.");
 		this.getServletContext().getRequestDispatcher("/vues/Gestion_Catalogue.jsp").forward(request, response);
 	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -46,7 +46,8 @@ public class Traiter_Commande extends HttpServlet {
 		}
 		
 		request.setAttribute("msg", "L'article a bien été traité.");
-		this.getServletContext().getRequestDispatcher("/vues/Gestion_Commandes_Vendeur.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/order");
+		//this.getServletContext().getRequestDispatcher("/vues/Gestion_Commandes_Vendeur.jsp").forward(request, response);
 	}
 
 	/**

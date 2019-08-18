@@ -19,12 +19,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_V.html"%>
+	</div>
 	<div id="divParent" class="container" align="center">
 		<h1>
 			Bienvenue
 			<jsp:getProperty name="vendeur" property="prenom" />
 			<jsp:getProperty name="vendeur" property="nom" /></h1>
 	</div>
-	<%@include file="Menu_V.html"%>
 </body>
 </html>

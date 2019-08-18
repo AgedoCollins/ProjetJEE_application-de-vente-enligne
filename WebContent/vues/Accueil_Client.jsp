@@ -19,15 +19,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div id="divParent" class="container" align="center">
+	<div class="navbar navbar-expand navbar-dark bg-dark justify-content-center">
+			<%@include file="Menu_C.html"%>
+	</div>
+		<div id="divParent" class="container" align="center">
 		<h1>
 			Bienvenue
 			<jsp:getProperty name="client" property="prenom" />
 			<jsp:getProperty name="client" property="nom" /></h1>
 	</div>
-	<div id="divParent" class="container">
+		<div id="divParent" class="container">
 		<p style="color: red">${empty msg ? '' : msg }</p>
 	</div>
-	<%@include file="Menu_C.html"%>
 </body>
 </html>

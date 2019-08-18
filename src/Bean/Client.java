@@ -83,7 +83,7 @@ public class Client extends Utilisateur implements Serializable{
 		for (Client c : listClients) {
 			if(c.getId() > 0)
 			{
-				if (String.valueOf(c.getEmail()) .equals(String.valueOf(utilisateur.getEmail())) && c.getId() != utilisateur.getId()) {
+				if (String.valueOf(c.getEmail()).equals(String.valueOf(utilisateur.getEmail())) && c.getId() != utilisateur.getId()) {
 					alreadyExist = true;
 				}
 			}
